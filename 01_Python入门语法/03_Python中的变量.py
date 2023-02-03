@@ -9,6 +9,49 @@
 @Function: Python中的变量
 '''
 
+'''
+变量：'容器'
+弱语言：变量声明的时候对数据类型不是很严格
+java:   int a=100
+        float b=9.9
+        
+python： a=100
+格式：变量名=值
+
+变量名的命名规范：
+1、字母，数字，下划线，不能以数字开头
+2、严格区分大小写
+3、不能使用关键字
+'''
+
+name='zhangsan'
+age=19
+
+a1=100
+# a+=200
+# a$=200
+a_=200
+# a$b=123
+
+
+# 命名规则
+# 见名知意
+# 驼峰命名法：
+# 小驼峰：开头第一个单词全部小写，getNameByLine
+getNameByLine='hello'
+
+get_name_by_line='hello'
+
+# 大驼峰：Python面向对象：类名   每一个单词的首字母都采用大写
+GetNameByLine='hello'
+
+# 关键字
+
+
+名字='zhnagsan'
+print(名字)
+
+
 # 定义一个变量，用来记录钱包余额
 money = 50
 # 通过print语句，输出变量记录的内容

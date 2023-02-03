@@ -14,12 +14,12 @@ t1 = (1, "Hello", "True")
 t2 = ()
 t3 = tuple()
 print(f"t1的类型是：{type(t1)}，内容是：{t1}")
-print(f"t1的类型是：{type(t2)}，内容是：{t2}")
-print(f"t1的类型是：{type(t3)}，内容是：{t3}")
+print(f"t2的类型是：{type(t2)}，内容是：{t2}")
+print(f"t3的类型是：{type(t3)}，内容是：{t3}")
 
 # 定义单个元素的元组
-# t4=("hello")
-t4 = ("hello",)  # t4的类型是：<class 'str'>，内容是：hello
+# t4=("hello")  # t4的类型是：<class 'str'>，内容是：hello
+t4 = ("hello",)
 print(f"t4的类型是：{type(t4)}，内容是：{t4}")
 
 # 元组的嵌套

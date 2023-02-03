@@ -18,6 +18,8 @@ result = say_hi()
 print(f"無返回值函數，返回的內容是：{result}")
 print(f"無返回值函數，返回的類型是：{type(result)}")
 
+print('======================================')
+
 
 def say_hi2():
     print("你好呀")
@@ -28,6 +30,7 @@ result = say_hi2()
 print(f"無返回值函數，返回的內容是：{result}")
 print(f"無返回值函數，返回的內容類型是：{type(result)}")
 
+print('========================================')
 
 # None用於if判斷
 def check_age(age):
@@ -39,6 +42,7 @@ def check_age(age):
 
 result = check_age(16)
 if not result:
+    # 进入if表示result是None值，也就是False
     print("未成年人，不可進入")
 
 # None用于声明无初始内容的变量

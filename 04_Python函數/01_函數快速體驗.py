@@ -31,6 +31,7 @@ for i in str3:
     count+=1
 print(f"字符串{str3}的長度是：{count}")
 
+print('=====================================')
 
 # 可以使用函數來優化這個過程
 def my_len(data):

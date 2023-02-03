@@ -10,7 +10,8 @@
 '''
 
 # 定義一個列表list
-my_list = ["itheima", "itcast", "python"]
+
+my_list=["itheima","itcast","python"]
 print(my_list)
 print(type(my_list))
 

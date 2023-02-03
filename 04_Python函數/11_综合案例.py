@@ -36,7 +36,7 @@ def account_save(money):
 def account_withdraw(money):
     print("------------------------取款---------------------------")
     global user_account
-    user_account -= money_withdraw
+    user_account -= money
     print(f"{name}，您好，您取款{money}元成功。")
 
     account_query(False)
@@ -46,9 +46,9 @@ def user_operation():
     print("-------------------------主菜单-----------------------")
     print(f"{name}，您好，欢迎来到黑马银行ATM。请选择操作：")
     print("查询余额\t输入【1】")
-    print("存款\t输入【2】")
-    print("取款\t输入【3】")
-    print("退出\t输入【4】")
+    print("存款\t\t输入【2】")
+    print("取款\t\t输入【3】")
+    print("退出\t\t输入【4】")
     return  input("请输入您的选择：")
 
 # 设置无限循环，确保程序不退出

@@ -9,15 +9,14 @@
 @Function:
 '''
 
+print('helloworld')
+print('hello\tworld')
 
 i=1
-
 while i<=9:
     j=1
-
     while j<=i:
-
-        print(f"{j} * {i} = {j*i}\t",end="")
+        print(f"{j} * {i} = {j*i}\t",end="")    # 通过\t制表符进行对齐；end=""可输出不换行
         j+=1
 
     i+=1
