@@ -8,7 +8,7 @@
 @Date    ：2023/1/5 20:28 
 @Function:
 '''
-
+import task as task
 
 # 语法1：range(num)
 
@@ -17,6 +17,7 @@ for x in range(10):
 
 
 # 语法2：range(num1, num2)
+
 
 for x in range(5,10):
     print(x)

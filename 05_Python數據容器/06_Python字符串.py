@@ -15,7 +15,7 @@ my_str="itheima and itcast"
 # index方法
 value=my_str[2]
 value2=my_str[-16]
-print(f"从字符串{my_str}中取出小标为2的元素是：{value}，取出下标为-16的元素是：{value2}")
+print(f"从字符串{my_str}中取出下标为2的元素是：{value}，取出下标为-16的元素是：{value2}")
 
 # my_str[2]="H"
 
