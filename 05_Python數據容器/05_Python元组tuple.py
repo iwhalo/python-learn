@@ -57,7 +57,7 @@ for element in t8:
 
 # 修改元组内容
 # t8[0] = "itcast"    #TypeError: 'tuple' object does not support item assignment
-# 定义一个元组
+# 定义一个元组，元组中嵌套有list列表，支持对list列表修改
 t9=(1,2,["itheima","itcast"])
 print(f"t9的内容是：{t9}")
 t9[2][0]="黑马程序员"

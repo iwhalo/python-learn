@@ -22,16 +22,16 @@ print(f"从字符串{my_str}中取出下标为2的元素是：{value}，取出�
 num=my_str.index("and")
 print(f"从字符串{my_str}中查找and，其起始下标是：{num}")
 
-# replace方法
+# replace方法----字符串的替换
 new_my_str=my_str.replace("it","程序")
 print(f"将字符串{my_str}进行替换后得到：{new_my_str}")
 
-# split方法
+# split方法----字符串的分割
 my_str="hello python itheima itcast"
 my_str_list=my_str.split(" ")
 print(f"将字符串{my_str}按照空格进行split分割后得到：{my_str_list}，类型是：{type(my_str_list)}")
 
-# strip方法
+# strip方法----字符串的规整操作
 my_str="  itheima and itcast  "
 new_my_str=my_str.strip()
 print(f"字符串{my_str}被strip后，结果是：{new_my_str}")
