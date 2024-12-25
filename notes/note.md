@@ -1,69 +1,46 @@
-### Python中常用的6种数据类型：
+Python中常用的6种数据类型：
 ![img.png](img.png)
 
-### 布尔类型的定义：
+布尔类型的定义：
 ![img_1.png](img_1.png)
 
-### 比较运算符：
+比较运算符：
 ![img_2.png](img_2.png)
 
 ![img_3.png](img_3.png)
 
-### 总结：
+总结：
 ![img_4.png](img_4.png)
 
-## 判断语句
-
 ![img_5.png](img_5.png)
-
-### if判断语句
 
 ![img_6.png](img_6.png)
 
 ![img_7.png](img_7.png)
 
-### if else 语句
-
 ![img_8.png](img_8.png)
-
 
 ![img_9.png](img_9.png)
 
-### while语句
-
 ![img_10.png](img_10.png)
-
-### 总结
 
 ![img_11.png](img_11.png)
 
 ![img_12.png](img_12.png)
 
-## 循环语句
-
-### for循环语句
-
 ![img_13.png](img_13.png)
 
 ![img_14.png](img_14.png)
-
-
 
 ![img_15.png](img_15.png)
 
 ![img_16.png](img_16.png)
 
-### range语句
-
 ![img_17.png](img_17.png)
 
 ![img_18.png](img_18.png)
 
-### 练习
-
 ![img_19.png](img_19.png)
-
-### for循环变量作用域
 
 ![img_20.png](img_20.png)
 
