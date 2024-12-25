@@ -518,3 +518,128 @@ Python中常用的6种数据类型：
 
 ![img_173.png](img_173.png)
 
+
+##### 自定义模块
+
+![img_174.png](img_174.png)
+
+![img_175.png](img_175.png)
+
+![img_176.png](img_176.png)
+
+##### 测试模块
+
+![img_177.png](img_177.png)
+
+![img_178.png](img_178.png)
+
+#### Python包
+
+![img_179.png](img_179.png)
+
+![img_180.png](img_180.png)
+
+##### 导入包
+
+![img_181.png](img_181.png)
+
+![img_182.png](img_182.png)
+
+##### 第三方包
+
+![img_183.png](img_183.png)
+
+![img_184.png](img_184.png)
+
+##### 综合案例
+
+![img_185.png](img_185.png)
+
+![img_186.png](img_186.png)
+
+### Python基础综合案例
+
+![img_187.png](img_187.png)
+
+![img_188.png](img_188.png)
+
+![img_189.png](img_189.png)
+
+![img_190.png](img_190.png)
+
+![img_191.png](img_191.png)
+
+![img_192.png](img_192.png)
+
+#### json数据格式
+
+![img_193.png](img_193.png)
+
+![img_194.png](img_194.png)
+
+![img_195.png](img_195.png)
+
+![img_196.png](img_196.png)
+
+![img_197.png](img_197.png)
+
+![img_198.png](img_198.png)
+
+#### pyecharts模块
+
+![img_199.png](img_199.png)
+
+![img_200.png](img_200.png)
+
+##### pyecharts入门
+
+![img_201.png](img_201.png)
+
+##### pyecharts配置
+
+![img_202.png](img_202.png)
+
+![img_203.png](img_203.png)
+
+![img_204.png](img_204.png)
+
+##### 地图使用
+
+![img_205.png](img_205.png)
+
+![img_206.png](img_206.png)
+
+##### 动态柱状图
+
+![img_207.png](img_207.png)
+
+![img_208.png](img_208.png)
+
+![img_209.png](img_209.png)
+
+![img_210.png](img_210.png)
+
+##### 时间线
+
+![img_211.png](img_211.png)
+
+##### 时间线自动播放
+
+![img_213.png](img_213.png)
+
+##### 时间线设置主题
+
+![img_212.png](img_212.png)
+
+##### 列表排序方法
+
+![img_214.png](img_214.png)
+
+![img_215.png](img_215.png)
+
+
+##### 需求
+
+![img_216.png](img_216.png)
+
+![img_217.png](img_217.png)
