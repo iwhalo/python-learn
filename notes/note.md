@@ -463,4 +463,58 @@ Python中常用的6种数据类型：
 
 ![img_158.png](img_158.png)
 
+### 异常
+
+![img_159.png](img_159.png)
+
+![img_160.png](img_160.png)
+
+##### 异常的捕获
+
+![img_161.png](img_161.png)
+
+![img_162.png](img_162.png)
+
+![img_163.png](img_163.png)
+
+##### 捕获指定的异常
+
+![img_164.png](img_164.png)
+
+
+##### 捕获多个异常
+
+![img_165.png](img_165.png)
+
+##### 异常else
+
+![img_166.png](img_166.png)
+
+##### 异常的finally
+
+![img_167.png](img_167.png)
+
+#### 异常的传递
+
+![img_168.png](img_168.png)
+
+### Python模块
+
+![img_169.png](img_169.png)
+
+##### 什么是模块
+
+![img_170.png](img_170.png)
+
+##### 模块的导入方式
+
+![img_171.png](img_171.png)
+
+##### import模块名
+
+![img_172.png](img_172.png)
+
+##### 总结
+
+![img_173.png](img_173.png)
 
