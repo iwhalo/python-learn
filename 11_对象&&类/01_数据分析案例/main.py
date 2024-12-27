@@ -17,11 +17,12 @@
 4.进行数据需求的逻辑计算（计算每一天的销售额）
 5.通过PyEcharts进行图形绘制
 '''
+from pyecharts.charts import Bar
+from pyecharts.globals import ThemeType
+from pyecharts.options import *
+
 from data_define import Record
 from file_define import TextFileReader, JsonFileReader
-from pyecharts.charts import Bar
-from pyecharts.options import *
-from pyecharts.globals import ThemeType
 
 text_file_reader = TextFileReader('')
 json_file_reader = JsonFileReader('')

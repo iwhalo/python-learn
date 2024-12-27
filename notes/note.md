@@ -976,4 +976,193 @@ Python中常用的6种数据类型：
 
 ![img_325.png](img_325.png)
 
-测试
+##### DML
+
+![img_326.png](img_326.png)
+
+![img_327.png](img_327.png)
+
+##### 数据插入
+
+![img_328.png](img_328.png)
+
+##### 数据删除
+
+![img_329.png](img_329.png)
+
+##### 数据更新
+
+![img_330.png](img_330.png)
+
+##### DQL数据查询
+
+![img_331.png](img_331.png)
+
+基础数据查询
+
+![img_332.png](img_332.png)
+
+分组聚合
+
+![img_333.png](img_333.png)
+
+对查询结果进行排序
+
+![img_334.png](img_334.png)
+
+#### Python操作MySQL
+
+![img_335.png](img_335.png)
+
+![img_336.png](img_336.png)
+
+
+#####  创建MySQL数据库连接
+
+![img_337.png](img_337.png)
+
+
+##### 数据插入
+
+![img_338.png](img_338.png)
+
+
+##### 设置自动commit
+
+![img_339.png](img_339.png)
+
+##### SQL案例
+
+![img_340.png](img_340.png)
+
+![img_341.png](img_341.png)
+
+![img_342.png](img_342.png)
+
+![img_343.png](img_343.png)
+
+
+##### 案例
+
+![img_344.png](img_344.png)
+
+### pyspark
+
+![img_345.png](img_345.png)
+
+![img_346.png](img_346.png)
+
+#### 前言介绍
+
+![img_347.png](img_347.png)
+
+![img_348.png](img_348.png)
+
+![img_349.png](img_349.png)
+
+![img_350.png](img_350.png)
+
+![img_351.png](img_351.png)
+
+![img_352.png](img_352.png)
+
+全部配套资源领取方式：关注黑马程序员公综号，回复关键词:领取资源02
+Python+大数据学习球群284710916，告别孤单，共同进步！
+软件、代码、资源下载问题
+https://www.bilibili.com/read/cv7881295/
+
+Python+大数据开发学习路线：
+https://www.bilibili.com/read/cv11171369/
+
+Linux入门：BV1n84y1i7td
+
+https://www.bilibili.com/video/BV1n84y1i7td/?spm_id_from=333.788.video.desc.click
+
+MySQL数据库：BV1iF411z7Pu
+
+https://www.bilibili.com/video/BV1iF411z7Pu/?spm_id_from=333.788.video.desc.click
+
+Hadoop入门：BV1WY4y197g7
+
+https://www.bilibili.com/video/BV1WY4y197g7/?spm_id_from=333.788.video.desc.click
+
+Hive数仓项目：BV1ef4y1B7KX
+
+https://www.bilibili.com/video/BV1ef4y1B7KX/?spm_id_from=333.788.video.desc.click
+
+PB内存计算
+
+Python入门：BV1qW4y1a7fU
+
+https://www.bilibili.com/video/BV1qW4y1a7fU/?spm_id_from=333.788.video.desc.click
+
+Python编程进阶：BV1Ex411x7Xn
+
+https://www.bilibili.com/video/BV1Ex411x7Xn/?spm_id_from=333.788.video.desc.click
+
+spark3.2从基础到精通：BV1Jq4y1z7VP
+
+https://www.bilibili.com/video/BV1Jq4y1z7VP/?spm_id_from=333.788.video.desc.click
+
+Hive+Spark离线数仓工业项目实战：BV1Tv411B7Cf
+
+https://www.bilibili.com/video/BV1Tv411B7Cf/?spm_id_from=333.788.video.desc.click
+
+教程学习可能遇到的问题答疑（非技术型）：https://www.bilibili.com/read/cv7964085/
+===============================
+本课程无缝衔接数据开发、人工智能、数据分析，后续挑战30w年薪。从零基础开始入门学习Python，开发环境使用最新版python3.10，从软件下载，IDE使用，让学生一步步了解Python，掌握Python基础语法，掌握代码编写的规范和技巧，Bug调试能力，用Python第三方库做出可视化图表。课程+配套练习学练结合，锻炼学生的自主解决问题的能力和举一反三能力，课堂生动有趣，不枯燥。
+
+![img_353.png](img_353.png)
+
+
+#### 基础准备
+
+![img_354.png](img_354.png)
+
+![img_355.png](img_355.png)
+
+![img_356.png](img_356.png)
+
+##### 构建pyspark执行环境入口对象
+
+![img_357.png](img_357.png)
+
+
+##### spark编程模型
+
+![img_358.png](img_358.png)
+
+![img_359.png](img_359.png)
+
+![img_360.png](img_360.png)
+
+
+#### 数据输入
+
+![img_361.png](img_361.png)
+
+##### RDD对象
+
+![img_362.png](img_362.png)
+
+##### Python数据容器转RDD对象
+
+![img_363.png](img_363.png)
+
+##### 读取文件转RDD对象
+
+![img_364.png](img_364.png)
+
+![img_365.png](img_365.png)
+
+#### 数据计算
+
+![img_366.png](img_366.png)
+
+###### map方法
+
+![img_367.png](img_367.png)
+
+![img_368.png](img_368.png)
+
+![img_369.png](img_369.png)
