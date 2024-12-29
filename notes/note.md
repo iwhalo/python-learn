@@ -1166,3 +1166,151 @@ https://www.bilibili.com/video/BV1Tv411B7Cf/?spm_id_from=333.788.video.desc.clic
 ![img_368.png](img_368.png)
 
 ![img_369.png](img_369.png)
+
+##### flatMap方法
+
+![img_370.png](img_370.png)
+
+![img_371.png](img_371.png)
+
+###### reduceByKey
+
+![img_372.png](img_372.png)
+
+![img_373.png](img_373.png)
+
+KV型RDD 即 二元元组
+
+##### 案例
+
+![img_374.png](img_374.png)
+
+##### filter方法
+
+![img_375.png](img_375.png)
+
+![img_376.png](img_376.png)
+
+##### distinct方法
+
+![img_377.png](img_377.png)
+
+###### sortBy
+
+![img_378.png](img_378.png)
+
+###### 案例
+
+![img_379.png](img_379.png)
+
+#### 总结
+
+![img_381.png](img_381.png)
+
+##### collect算子
+
+![img_382.png](img_382.png)
+
+###### reduce算子
+
+![img_383.png](img_383.png)
+
+##### take算子
+
+![img_384.png](img_384.png)
+
+##### count算子
+
+![img_385.png](img_385.png)
+
+![img_386.png](img_386.png)
+
+#### 数据输出
+
+![img_387.png](img_387.png)
+
+##### 输出到文件中
+
+##### 前置条件：配置Hadoop依赖
+
+![img_390.png](img_390.png)
+
+![img_388.png](img_388.png)
+
+##### saveAsTextFile算子
+
+![img_389.png](img_389.png)
+
+##### 修改RDD分区为1个
+
+![img_392.png](img_392.png)
+
+#### 综合案例
+
+![img_393.png](img_393.png)
+
+![img_394.png](img_394.png)
+
+#### 分布式集群运行
+
+![img_395.png](img_395.png)
+
+![img_396.png](img_396.png)
+
+### Python高阶技巧
+
+![img_397.png](img_397.png)
+
+![img_398.png](img_398.png)
+
+#### 闭包
+
+##### 闭包概念
+
+![img_399.png](img_399.png)
+
+![img_400.png](img_400.png)
+
+![img_401.png](img_401.png)
+
+##### 简单闭包
+
+![img_402.png](img_402.png)
+
+##### nonlocal关键字修改外部函数的变量值
+
+![img_403.png](img_403.png)
+
+![img_404.png](img_404.png)
+
+![img_405.png](img_405.png)
+
+![img_406.png](img_406.png)
+
+#### 装饰器
+
+![img_407.png](img_407.png)
+
+![img_408.png](img_408.png)
+
+![img_409.png](img_409.png)
+
+![img_410.png](img_410.png)
+
+#### 设计模式
+
+![img_411.png](img_411.png)
+
+![img_412.png](img_412.png)
+
+###### 单例模式
+
+![img_413.png](img_413.png)
+
+![img_414.png](img_414.png)
+
+![img_415.png](img_415.png)
+
+##### 工厂模式
+
+![img_416.png](img_416.png)

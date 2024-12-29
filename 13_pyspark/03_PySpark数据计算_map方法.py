@@ -9,7 +9,7 @@ import os
 
 from pyspark import SparkConf, SparkContext
 
-os.environ['PYSPARK_PYTHON'] = 'G:/pycharmProjects/python-learn/venv/Scripts/python.exe'
+os.environ['PYSPARK_PYTHON'] = 'D:\Python\Python311\python.exe'
 
 conf = SparkConf().setMaster('local[*]').setAppName('test_spark')
 sc = SparkContext(conf=conf)
