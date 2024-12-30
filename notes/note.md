@@ -1185,6 +1185,7 @@ KV型RDD 即 二元元组
 
 ![img_374.png](img_374.png)
 
+
 ##### filter方法
 
 ![img_375.png](img_375.png)
@@ -1313,4 +1314,103 @@ KV型RDD 即 二元元组
 
 ##### 工厂模式
 
-![img_416.png](img_416.png)
+![img_417.png](img_417.png)
+
+![img_418.png](img_418.png)
+
+![img_419.png](img_419.png)
+
+#### 多线程
+
+![img_420.png](img_420.png)
+
+##### 进程&&线程
+
+![img_421.png](img_421.png)
+
+![img_422.png](img_422.png)
+
+![img_423.png](img_423.png)
+
+##### 多线程编程
+
+![img_424.png](img_424.png)
+
+##### threading模块
+
+![img_425.png](img_425.png)
+
+![img_426.png](img_426.png)
+
+![img_427.png](img_427.png)
+
+#### 网络编程
+
+![img_428.png](img_428.png)
+
+![img_429.png](img_429.png)
+
+![img_430.png](img_430.png)
+
+![img_431.png](img_431.png)
+
+##### Socket服务端编程
+
+![img_432.png](img_432.png)
+
+![img_433.png](img_433.png)
+
+![img_434.png](img_434.png)
+
+##### socket客户端开发
+
+![img_435.png](img_435.png)
+
+![img_436.png](img_436.png)
+
+![img_437.png](img_437.png)
+
+![img_438.png](img_438.png)
+
+#### 正则表达式
+
+![img_439.png](img_439.png)
+
+![img_440.png](img_440.png)
+
+![img_441.png](img_441.png)
+
+##### match
+
+![img_442.png](img_442.png)
+
+##### search
+
+![img_443.png](img_443.png)
+
+##### findall
+
+![img_445.png](img_445.png)
+
+##### 元字符匹配
+
+![img_446.png](img_446.png)
+
+![img_447.png](img_447.png)
+
+![img_448.png](img_448.png)
+
+![img_449.png](img_449.png)
+
+##### 案例
+
+![img_450.png](img_450.png)
+
+#### 递归
+
+![img_451.png](img_451.png)
+
+##### 递归查找文件
+
+![img_452.png](img_452.png)
+
