@@ -1,0 +1,235 @@
+# 【零基础学爬虫】数据存储几种方式
+
+
+目录：
+
+1.数据写入csv文件
+
+2.数据写入excell文件
+
+3.数据存入mongodb
+
+4.数据写入mysql
+
+5.影评爬取代码展示
+
+
+注意：爬取的数据以字典的形式放入了self.data属性中[{},{},{}]
+
+如需直接使用需要把数据类型转换为列表，把self.data换成自己的数据存储变量名
+
+
+
+## 1.数据写入csv文件
+
+爬取的数据以字典的形式放入了self.data属性中
+
+```python
+
+#获取header为第一行的字段名
+header = self.data[0].keys()
+# 写入文件test.csv，
+with open('test.csv', 'w', encoding='utf8') as f:
+# 提前预览列名，当下面代码写入数据时，会将其一一对应。
+    witer = csv.DictWriter(f, fieldnames=header)
+    # 写入列名
+    witer.writeheader()
+    # 写入字典中的数据
+    witer.writerows(self.data)
+```
+
+## 2.数据写入excell文件
+
+爬取的数据以字典的形式放入了self.data属性中
+
+需要应用xlwt的包
+
+```python
+import xlwt
+#实例化一个xlwt对象
+workbook = xlwt.Workbook(encoding='utf8')
+# 新建一个excel书签，名为test
+sheet1 = workbook.add_sheet('test')
+# 获取字段
+header = list(self.data[0].keys())
+# 使用for循环，字段数的长度和字段
+for i, key in zip(range(len(header)), header):
+# excel写入字段名
+    sheet1.write(0, i, key)
+ 
+#使用两个for循环，j用来控制写入数据的excel的行数，m用来控制列数，而key则是用来取字典的数据
+for j in range(1, len(self.data) + 1):
+    for m, key in zip(range(len(header)), header):
+        #写入数据
+        sheet1.write(j, m, self.data[j - 1][key])
+ 
+#保存文件路径，不用新建excel文件，自动生成
+ 
+workbook.save(r'C:\Users\Administrator\Desktop\test.xlsx')
+```
+
+## 3.数据存入mongodb
+
+爬取的数据还是存放在类的self.data属性中
+
+mongodb数据库没有表的概念，数据的写入相对较为简单一点
+
+```python
+
+#连接mongodb
+ 
+mdb = MongoClient('127.0.0.1', 27017)
+ 
+# 指定mongodb的库的集合名称，不用新建，运行后直接创建
+db = mdb.test['moive_info']
+ 
+#for循环（self.data的数据类型为列表，中间的数据格式为字典[{},{}]）拿取数据字典格式
+for i in self.data:
+ 
+#判断数据是否为字典类型，如果是，写入
+    if isinstance(i, dict):
+        db.insert_one(i)
+ 
+        #如果不是的，则报i的title字段+写入数据失败
+    else:
+        print(i['title'], '写入失败')
+```
+
+4.数据写入mysql
+
+爬取的数据还是存放在类的self.data属性中
+
+```python
+
+# 连接mysql数据库，注：注意指定database的名称
+db = pymysql.connect(host='127.0.0.1', user='root', password='123456', port=3306, database='test')
+#实例化一个游标对象
+cursor = db.cursor()
+#创建两个字段，keys为sql语句的字段的站位字段，values为数据的站位字符串
+keys = ','.join(self.data[0].keys())
+values = ','.join(['%s'] * len(self.data[0]))
+#这里的mysql数据库的表需要提前创建好
+# 利用上面的站位字符串，构造一个通用sql语句
+sql = 'insert into moive_list(id,{key}) values(null,{values})'.format(key=keys, values=values)
+# for循环把数据取成字典类型
+for i in self.data:        
+    # 先获取字典值的数据为value，每一个数据赋值给一个变量
+    value = list(i.values())
+    title = value[0][0]
+    start = value[1][0]
+    actor = value[2]
+    # 写一个报错，增加容错率
+    try:
+        if cursor.execute(sql, (title, start, actor)):
+            print(title, 'seccess')
+        except:
+            db.rollback()
+ 
+#需要使用这个db.commit(),sql语句才会有效
+db.commit()
+```
+
+5.影评爬取代码展示
+
+# 数据不能直接使用
+
+```python
+import csv
+import requests
+import xlwt
+from base import Sqide
+from lxml import etree
+import pymysql
+from pymongo import MongoClient
+from elasticsearch import Elasticsearch
+ 
+ 
+class Test(Sqide):
+    url = r'https://ssr1.scrape.center/'
+    url_list = []
+    data = []
+ 
+    def product(self):
+        response = requests.get(self.url)
+        content = response.content.decode('utf8')
+        html = etree.HTML(content)
+        urls = html.xpath('//div[@class="el-card item m-t is-hover-shadow"]//a[@class="name"]/@href')
+        for i in urls:
+            self.url_list.append('https://ssr1.scrape.center' + str(i))
+        print(self.url_list)
+ 
+    def consumer(self):
+        for i in self.url_list:
+            response = requests.get(i)
+            content = response.content.decode('utf8')
+            html = etree.HTML(content)
+            title = html.xpath('//h2[@class="m-b-sm"]/text()')
+            start = html.xpath(
+                '//div[@class="el-col el-col-24 el-col-xs-8 el-col-sm-4"]//p[@class="score m-t-md m-b-n-sm"]/text()')
+            actors = html.xpath('//div[@class="el-card__body"]/p[@class="name text-center m-b-none m-t-xs"]/text()')[0]
+            dir = {"title": title, "start": start, "actor": actors}
+            self.data.append(dir)
+ 
+    def save_csv(self):
+        header = self.data[0].keys()
+        # 写入文件test.csv，
+        with open('test.csv', 'w', encoding='utf8') as f:
+            # 提前预览列名，当下面代码写入数据时，会将其一一对应。
+            witer = csv.DictWriter(f, fieldnames=header)
+            # 写入列名
+            witer.writeheader()
+            # 写入字典中的数据
+            witer.writerows(self.data)
+ 
+    def save_excel(self):
+        workbook = xlwt.Workbook(encoding='utf8')
+        sheet1 = workbook.add_sheet('test')
+        header = list(self.data[0].keys())
+        for i, key in zip(range(len(header)), header):
+            sheet1.write(0, i, key)
+        for j in range(1, len(self.data) + 1):
+            for m, key in zip(range(len(header)), header):
+                sheet1.write(j, m, self.data[j - 1][key])
+ 
+        workbook.save(r'C:\Users\Administrator\Desktop\test.xlsx')
+ 
+    def save_mongo(self):
+        mdb = MongoClient('127.0.0.1', 27017)
+        db = mdb.test['moive_info']
+        for i in self.data:
+            if isinstance(i, dict):
+                db.insert_one(i)
+            else:
+                print(i['title'], '写入失败')
+ 
+    def save_mysql(self):
+        db = pymysql.connect(host='127.0.0.1', user='root', password='123456', port=3306, database='test')
+        cursor = db.cursor()
+        keys = ','.join(self.data[0].keys())
+        values = ','.join(['%s'] * len(self.data[0]))
+        sql = 'insert into moive_list(id,{key}) values(null,{values})'.format(key=keys, values=values)
+        for i in self.data:
+            value = list(i.values())
+            title = value[0][0]
+            start = value[1][0]
+            actor = value[2]
+            try:
+                if cursor.execute(sql, (title, start, actor)):
+                    print(title, 'seccess')
+            except:
+                db.rollback()
+            db.commit()
+        # cursor.execute(sql)
+ 
+    def practice_es(self):
+        es=Elasticsearch('http://127.0.0.1:9200/')
+        es.index(index='xxx',doc_type='he',id=1,body=self.data)
+ 
+ 
+Test().product()
+Test().consumer()
+# Test().save_excel()
+# Test().save_mysql()
+# Test().save_mongo()
+Test().practice_es()
+```
