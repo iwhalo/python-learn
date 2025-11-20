@@ -10,12 +10,14 @@ class HomePage(BasePage):
     """斗鱼首页的页面对象"""
     
     # 元素定位器
-    LOGO = ".Title-header-logo"
-    SEARCH_INPUT = "input[placeholder*='搜索']"
-    SEARCH_BUTTON = ".SearchBtn"
-    CATEGORY_NAV = ".NavMenu-item"
-    LOGIN_BUTTON = ".SignIn, .dy-login"
-    HOT_LIVE_ROOMS = ".DyListCover-wrap, .recommend-item"
+    LOGO = ".Title-header-logo, .header-logo, img[alt*='斗鱼'], [class*='logo']"
+    SEARCH_INPUT = "input[placeholder*='搜索'], input[type='text'][class*='search']"
+    SEARCH_BUTTON = ".SearchBtn, button[class*='search']"
+    CATEGORY_NAV = ".NavMenu-item, .nav-menu-item, [class*='nav'] a"
+    # 鱼头像登录/用户入口
+    AVATAR_ICON = ".fishIcon, .fish-icon, [class*='fish'], .dy-avatar-icon, img[src*='fish']"
+    LOGIN_BUTTON = ".SignIn, .dy-login, text=登录"
+    HOT_LIVE_ROOMS = ".DyListCover-wrap, .recommend-item, [class*='live-item']"
     
     def __init__(self, page: Page, fsm: Optional[FSM] = None):
         super().__init__(page, fsm)
@@ -23,7 +25,15 @@ class HomePage(BasePage):
     
     def navigate_to_home(self):
         """导航到首页"""
+        print(f"正在导航到: {self.url}")
         self.navigate(self.url)
+        # 等待页面加载完成，斗鱼会自动在URL后面添加dyshid参数
+        # 输入网址https://www.douyu.com/后浏览器会自动在网址后面增加/?dyshid=0-ba439b3aea51951c74a2f47c00071701
+        self.page.wait_for_load_state("networkidle")
+        # 额外等待以确保页面完全渲染
+        self.page.wait_for_timeout(2000)
+        current_url = self.page.url
+        print(f"当前URL: {current_url}")
         if self.fsm:
             self.fsm.transition("navigate_home")
         return self
@@ -79,7 +89,12 @@ class HomePage(BasePage):
     
     def is_home_page(self) -> bool:
         """验证当前页面是否为首页"""
-        return self.is_visible(self.LOGO) and "douyu.com" in self.get_url()
+        # 斗鱼会在URL后面添加dyshid参数，所以只检查基本域名
+        current_url = self.get_url()
+        is_douyu = "douyu.com" in current_url
+        # 检查是否是首页（不是其他子页面）
+        is_homepage = current_url.rstrip('/').split('?')[0].endswith('douyu.com')
+        return self.is_visible(self.LOGO) and is_douyu and is_homepage
     
     def get_page_title(self) -> str:
         """获取首页标题"""

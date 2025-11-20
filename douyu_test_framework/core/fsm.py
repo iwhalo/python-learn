@@ -12,6 +12,8 @@ class PageState(Enum):
     LIVE_ROOM = "live_room"  # 直播间
     SEARCH_RESULTS = "search_results"  # 搜索结果页
     LOGIN = "login"  # 登录页
+    REGISTER = "register"  # 注册页
+    PHONE_VERIFY = "phone_verify"  # 手机验证页
     ERROR = "error"  # 错误状态
 
 
@@ -50,11 +52,24 @@ class FSM:
             StateTransition(PageState.SEARCH_RESULTS, PageState.LIVE_ROOM, "select_search_result"),
             StateTransition(PageState.SEARCH_RESULTS, PageState.HOME, "go_home"),
             StateTransition(PageState.LIVE_ROOM, PageState.HOME, "go_home"),
+            # 登录和注册相关转换
             StateTransition(PageState.LOGIN, PageState.HOME, "successful_login"),
+            StateTransition(PageState.LOGIN, PageState.REGISTER, "switch_to_register"),
+            StateTransition(PageState.LOGIN, PageState.PHONE_VERIFY, "request_phone_code"),
+            StateTransition(PageState.LOGIN, PageState.LOGIN, "login_failed"),
+            StateTransition(PageState.REGISTER, PageState.LOGIN, "switch_to_login"),
+            StateTransition(PageState.REGISTER, PageState.PHONE_VERIFY, "verify_phone"),
+            StateTransition(PageState.REGISTER, PageState.REGISTER, "registration_failed"),
+            StateTransition(PageState.REGISTER, PageState.HOME, "successful_register"),
+            StateTransition(PageState.PHONE_VERIFY, PageState.LOGIN, "verification_failed"),
+            StateTransition(PageState.PHONE_VERIFY, PageState.HOME, "verification_success"),
+            StateTransition(PageState.PHONE_VERIFY, PageState.REGISTER, "back_to_register"),
             # 错误状态可以从任何状态转换而来
             StateTransition(PageState.HOME, PageState.ERROR, "error_occurred"),
             StateTransition(PageState.CATEGORY, PageState.ERROR, "error_occurred"),
             StateTransition(PageState.LIVE_ROOM, PageState.ERROR, "error_occurred"),
+            StateTransition(PageState.LOGIN, PageState.ERROR, "error_occurred"),
+            StateTransition(PageState.REGISTER, PageState.ERROR, "error_occurred"),
         ]
         
         for transition in transitions:

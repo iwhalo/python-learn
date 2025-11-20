@@ -14,7 +14,16 @@ class BasePage:
     
     def navigate(self, url: str):
         """导航到指定URL"""
-        self.page.goto(url, wait_until="domcontentloaded", timeout=self.timeout)
+        try:
+            # 导航到URL
+            self.page.goto(url, wait_until="domcontentloaded", timeout=self.timeout)
+            # 等待网络空闲，确保页面完全加载和重定向完成
+            self.page.wait_for_load_state("networkidle", timeout=self.timeout)
+            # 额外等待以确保动态内容加载
+            self.page.wait_for_timeout(1000)
+        except Exception as e:
+            print(f"导航到 {url} 时出错: {e}")
+            # 即使出错也继续，因为页面可能已经加载
     
     def wait_for_selector(self, selector: str, timeout: Optional[int] = None):
         """等待元素可见"""

@@ -104,6 +104,8 @@ def fsm(page: Page):
     from douyu_test_framework.pages.home_page import HomePage
     from douyu_test_framework.pages.category_page import CategoryPage
     from douyu_test_framework.pages.live_room_page import LiveRoomPage
+    from douyu_test_framework.pages.login_page import LoginPage
+    from douyu_test_framework.pages.register_page import RegisterPage
 
     fsm_instance.register_validator(
         PageState.HOME,
@@ -116,6 +118,14 @@ def fsm(page: Page):
     fsm_instance.register_validator(
         PageState.LIVE_ROOM,
         lambda p: LiveRoomPage(p).is_live_room_page()
+    )
+    fsm_instance.register_validator(
+        PageState.LOGIN,
+        lambda p: LoginPage(p).is_login_page()
+    )
+    fsm_instance.register_validator(
+        PageState.REGISTER,
+        lambda p: RegisterPage(p).is_register_page()
     )
 
     return fsm_instance
