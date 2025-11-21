@@ -9,9 +9,9 @@ import requests
 
 class Browser:
     # 设置默认值
-    _chrome_path = r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+    _chrome_path = r'C:\Program Files\Google\Chrome\Application\chrome.exe'
     _remote_debugging_port = 9222
-    _user_data_dir = r'C:\Program Files (x86)\Google\Chrome\Application\chrome_profile'
+    _user_data_dir = r'C:\Program Files\Google\Chrome\Application\chrome_profile'
     _remote_allow_origins = "*"
     _headless = False
     _window_size = ("1280", "768")
@@ -156,7 +156,7 @@ if __name__ == '__main__':
         # 实例化浏览器
         browser = Browser(
             remote_debugging_port=9222,
-            user_data_dir=r"C:\Program Files (x86)\Google\Chrome\Application\chrome_profile"  # 建议使用其他目录，避免权限问题
+            user_data_dir=r"C:\Program Files\Google\Chrome\Application\chrome_profile"  # 建议使用其他目录，避免权限问题
         )
 
         browser.start_chrome()

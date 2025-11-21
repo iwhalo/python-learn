@@ -1,0 +1,179 @@
+# 新书连载30｜兼容性案例分享--《测试总监话测试》
+
+![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BuV4gXrNvFrYsJ8BTa2IhQZENB3ibUclE6Wt8hozRX8tenYSIlXex189hm9Q2M2Sia6yqZqa55xE26ibwUw7o63CQ/640?wx_fmt=png&from=appmsg&wxfrom=5&wx_lazy=1&tp=webp#imgIndex=0)**点击蓝字，立即关注**![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BuV4gXrNvFrYsJ8BTa2IhQZENB3ibUclE9dqpNic62qBaQyRKwgrd1KDzYdto3MmNyzqZNt5qUR3qJ5gKOJZF9oQ/640?wx_fmt=png&from=appmsg&wxfrom=5&wx_lazy=1&tp=webp#imgIndex=1)
+
+  
+
+
+  
+  
+兼容性测试  
+  
+
+
+  
+
+
+ **4.1 App 兼容性测试**
+
+  
+
+
+ **4.1.4 兼容性案例分享**
+
+  
+
+
+上文介绍了App兼容性测试中，需要关注手机操作系统、分辨率、异形屏以及网络制式等影响因子对App兼容性的影响，以下是一些在测试过程中出现的App兼容性方面的案例。
+
+  
+
+
+ **01**
+
+![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BuV4gXrNvFrTnZWeno0uyFrj0TX42cKhq6JibUHfKxhZWuMxW7FIgfoNY9z1NwOAVedmE2jGdDQ3ylhhl24ibHEw/640?wx_fmt=png&from=appmsg&wxfrom=5&wx_lazy=1&tp=webp#imgIndex=2)
+
+ **“刘海”高度写死导致iPhone 12 mini显示异常**
+
+  
+
+
+“刘海”高度写死导致iPhone 12 mini显示异常如图4-11所示。
+
+  
+
+
+该案例是某App在iPhone 12 mini发布后出现的兼容性bug，主要原因是：程序代码在判断手机屏幕为“刘海屏”时，状态栏的高度固定设置为44（iPhone X的状态栏高度），而后期出现了其他高度的“刘海”（具体高度与机型有关，可能为47、49等），导致了该App出现兼容性问题。
+
+  
+![](https://mmbiz.qpic.cn/sz_mmbiz_png/BuV4gXrNvFoosqKEsEnMos3oEWQdB4euAoTEwOIC390z1NqHKEiaV2bNY8IwXg9RmXrcTnQ4VYuEOl3lTR84icuA/640?wx_fmt=png&from=appmsg)
+
+图4-11 “刘海”高度写死导致iPhone 12 mini显示异常
+
+  
+
+
+因不同机型的宽、高度不尽相同，若页面写死（固定的宽、高度），可能引发顶部、底部栏适配的问题。
+
+  
+
+
+通常采用的方式是，针对不同机型，底层统一封装适配，并提供业务调用，减少适配成本及可能引发的线上兼容性问题。
+
+  
+
+
+ **02**
+
+![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BuV4gXrNvFrTnZWeno0uyFrj0TX42cKhq6JibUHfKxhZWuMxW7FIgfoNY9z1NwOAVedmE2jGdDQ3ylhhl24ibHEw/640?wx_fmt=png&from=appmsg&wxfrom=5&wx_lazy=1&tp=webp#imgIndex=2)
+
+ **时区未兼容导致无法登录**
+
+  
+
+
+某App用户反馈在国外无法登录，而国内用户可正常登录。
+
+  
+
+
+经过分析，原因是在登录时做了安全性校验，用户登录信息中设置了过期时间，但在代码实现时，未根据时区的不同转为同一时区，导致用户在国外的当地时间超过了接口返回的过期时间而无法登录。
+
+  
+
+
+ **03**
+
+![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BuV4gXrNvFrTnZWeno0uyFrj0TX42cKhq6JibUHfKxhZWuMxW7FIgfoNY9z1NwOAVedmE2jGdDQ3ylhhl24ibHEw/640?wx_fmt=png&from=appmsg&wxfrom=5&wx_lazy=1&tp=webp#imgIndex=2)
+
+ **iOS 15.2新增相册卡死**
+
+  
+
+
+使用iOS 15.2，某App内未开启相册权限时选取照片，因此App卡死的问题。
+
+  
+
+
+主要原因是：2021年12月15日，苹果发布了iOS 15.2的正式版。不幸的是这次升级带来了卡死。
+
+  
+
+
+在还未向用户申请相册权限时，即[PHPhotoLibraryauthorizationStatus] != PHAuthorizationStatusAuthorized 时，如果调用 [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:xxx];添加监听，则会卡死。
+
+  
+
+
+ **04**
+
+![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BuV4gXrNvFrTnZWeno0uyFrj0TX42cKhq6JibUHfKxhZWuMxW7FIgfoNY9z1NwOAVedmE2jGdDQ3ylhhl24ibHEw/640?wx_fmt=png&from=appmsg&wxfrom=5&wx_lazy=1&tp=webp#imgIndex=2)
+
+ **小米安全键盘无法弹起**
+
+  
+
+
+某App曾经出现过，在小米mix3点击相册评论，弹起键盘后自动收起，导致无法正常评论的问题。
+
+  
+
+
+经过分析，该问题是由于小米手机使用的是自带的安全键盘，因此需要针对该安全键盘单独设置弹起的宽、高属性值。
+
+  
+
+
+ **05**
+
+![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BuV4gXrNvFrTnZWeno0uyFrj0TX42cKhq6JibUHfKxhZWuMxW7FIgfoNY9z1NwOAVedmE2jGdDQ3ylhhl24ibHEw/640?wx_fmt=png&from=appmsg&wxfrom=5&wx_lazy=1&tp=webp#imgIndex=2)
+
+ **播放判断错误导致音乐播放App音乐播放被异常停止**
+
+  
+
+
+手机使用某第三方音乐播放App播放音频并后台运行后，打开所要测试的App，出现音乐播放App声音播放被异常停止。
+
+  
+
+
+出现该问题是由于软件间不兼容，待测App功能需求为：在Wi-Fi环境下，若存在小视频则自动播放，并暂停其他App的音乐播放。
+
+  
+
+
+但实际实现存在问题，即使在无任何待播小视频的情况下，也处理为暂停其他已经App进行中的音乐播放。
+
+  
+
+
+ **06**
+
+![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BuV4gXrNvFrTnZWeno0uyFrj0TX42cKhq6JibUHfKxhZWuMxW7FIgfoNY9z1NwOAVedmE2jGdDQ3ylhhl24ibHEw/640?wx_fmt=png&from=appmsg&wxfrom=5&wx_lazy=1&tp=webp#imgIndex=2)
+
+ **vivo某机型自带浏览器全屏播放H5视频闪退**
+
+  
+
+
+测试某H5视频时，在vivo手机Android 8系统自带的浏览器上，点击全屏时出现闪退。
+
+  
+
+
+经过分析，主要原因是使用的某一版本X5内核在vivo手机上不兼容。因此兼容性测试涉及手机浏览器，需要特别关注手机自带的浏览器。
+
+  
+
+
+本书作者：孔令云  
+
+
+......
+
+点击 **阅读原文** ，查看独家连载
+
+如果有小伙伴想要分享技术、出版图书欢迎 **扫描下方二维码** 备注“ **出** **书** ”联系我们~  
+![图片](https://mmbiz.qpic.cn/mmbiz_jpg/BuV4gXrNvFotXcaj6pLylXT7ep3M0u3BM9bDm9OCiaImoJCVOE3Ik1tP2ck6gFxQsQvBibyMxaCMbRRlZ5LKwpdA/640?wx_fmt=other&wxfrom=5&wx_lazy=1&randomid=szqq4qzh&tp=webp#imgIndex=4)

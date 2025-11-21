@@ -9,9 +9,9 @@ import requests
 
 class Browser:
     # 设置默认值
-    _chrome_path=r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+    _chrome_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe'
     _remote_debugging_port=9222
-    _user_data_dir=r'C:\Program Files (x86)\Google\Chrome\Application\chrome_profile'
+    _user_data_dir=r'C:\Program Files\Google\Chrome\Application\chrome_profile'
     _remote_allow_origins="*"
     _headless=False
     _window_size=("1280","768")

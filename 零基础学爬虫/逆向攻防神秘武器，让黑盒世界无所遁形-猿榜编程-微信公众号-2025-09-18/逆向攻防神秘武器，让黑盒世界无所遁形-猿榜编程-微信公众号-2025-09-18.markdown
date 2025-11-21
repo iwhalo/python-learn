@@ -126,7 +126,7 @@ frida -U -n com.example.app
  **在应用启动时附加并加载脚本** ：
 
 ```shell
-frida -U -f com.example.app -l script.js --no-pause
+frida -U -f com.example.app -l tests.js --no-pause
 ```
 
 其中，`-f` 参数指定要启动的应用包名，`-l` 参数指定要加载的脚本文件，`--no-pause` 参数表示在加载脚本后立即恢复应用运行。
