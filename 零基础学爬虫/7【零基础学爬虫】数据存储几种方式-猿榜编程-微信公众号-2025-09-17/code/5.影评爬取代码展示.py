@@ -119,7 +119,7 @@ class Test(Sqide):
     def practice_es(self):
         es = Elasticsearch('http://127.0.0.1:9200/')
         es.index(
-            index='xxx',
+            index='Playwright 中route 方法模拟测试数据(Mocking)详解（上）',
             doc_type='he',
             id=1,
             body=self.data
