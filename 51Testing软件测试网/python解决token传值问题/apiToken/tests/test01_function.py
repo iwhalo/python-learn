@@ -15,13 +15,17 @@ class TestFunction:
 
     def setup_method(self, method):
         """测试初始化 - pytest会在每个测试方法前自动调用"""
+        print("***********************初始化操作开始***********************")
         self.session = requests.session()
         self.api = ApiFunction(self.session)
         self.test_token = None  # 用于存储测试token
+        print("***********************初始化操作结束***********************")
 
     def teardown_method(self, method):
         """测试清理 - pytest会在每个测试方法后自动调用"""
+        print("***********************测试清理操作开始***********************")
         self.session.close()
+        print("***********************测试清理操作结束***********************")
 
     def test01_login(self, password="123456789", mobile="13800000011"):
         """测试登录并获取token"""
