@@ -1,0 +1,129 @@
+DEBUG 2026-01-14 21:41:42,857 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:41:42,864 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:41:47,183 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:41:47,186 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:42:34,495 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."id" ASC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:42:59,602 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:42:59,609 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:43:16,031 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:43:16,036 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:43:23,335 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:43:23,338 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:45:12,804 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:45:12,809 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:45:18,518 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."id" ASC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:46:06,795 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:46:06,802 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:46:11,990 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:46:11,995 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:46:43,935 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:46:43,940 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:46:48,130 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."id" ASC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:47:01,677 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."id" ASC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:47:05,641 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."id" ASC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:47:11,086 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."id" ASC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:47:43,001 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:47:43,007 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:48:22,420 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:48:22,425 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:48:29,802 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."id" ASC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:49:22,090 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:49:22,095 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:49:23,831 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."id" ASC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:49:36,082 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:49:36,088 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:49:42,948 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."id" ASC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:50:34,626 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:50:34,630 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:50:39,205 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:50:39,213 django.db.backends utils debug_sql:151 - (0.001) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:50:43,517 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:50:43,529 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:50:47,857 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."created_at" DESC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:51:11,203 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:51:11,209 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:51:21,447 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:51:21,451 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:51:25,582 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:51:25,589 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:51:48,948 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:51:48,953 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:51:50,065 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."created_at" DESC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:51:54,118 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."created_at" DESC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:52:04,788 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."created_at" DESC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:52:51,455 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:52:51,460 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:52:54,269 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."created_at" DESC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:54:20,750 django.db.backends utils debug_sql:151 - (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+DEBUG 2026-01-14 21:54:20,756 django.db.backends utils debug_sql:151 - (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG 2026-01-14 21:54:34,760 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."created_at" DESC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:54:37,285 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."created_at" DESC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:54:38,302 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."created_at" DESC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:54:53,835 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."created_at" DESC LIMIT 1; args=(); alias=default
+DEBUG 2026-01-14 21:55:01,582 django.db.backends utils debug_sql:151 - (0.000) SELECT "invitation_weddingevent"."id", "invitation_weddingevent"."title", "invitation_weddingevent"."bride_name", "invitation_weddingevent"."groom_name", "invitation_weddingevent"."event_date", "invitation_weddingevent"."venue", "invitation_weddingevent"."address", "invitation_weddingevent"."description", "invitation_weddingevent"."cover_image", "invitation_weddingevent"."created_at", "invitation_weddingevent"."updated_at" FROM "invitation_weddingevent" ORDER BY "invitation_weddingevent"."created_at" DESC LIMIT 1; args=(); alias=default

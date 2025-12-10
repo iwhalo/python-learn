@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婚纱相册 - {{ wedding_event.title|default:"婚礼邀请" }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #5a3d5c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,245,240,0.9) 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain; /* 保持原始比例，完整显示图片 */
+            display: block;
+            background: #f0f0f0; /* 为缺失的图片提供背景色 */
+            object-position: center; /* 确保图片居中显示 */
+        }
+
+        .gallery-info {
+            padding: 15px;
+            flex-grow: 1;
+        }
+
+        .gallery-info h3 {
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .gallery-info p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .no-images {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .no-images p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+            background: #f8f9fa;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>婚纱相册</h1>
+            <p>记录我们美好的瞬间</p>
+        </div>
+
+        {% if gallery_images %}
+        <div class="gallery-grid">
+            {% for image in gallery_images %}
+            <div class="gallery-item">
+                {% if image.has_image %}
+                <img src="{{ image.get_image_url }}" alt="{{ image.title }}" class="gallery-image">
+                {% else %}
+                <img src="/static/images/default_gallery.jpg" alt="{{ image.title }}" class="gallery-image" onerror="this.onerror=null;this.src='/static/images/default_image.png';">
+                {% endif %}
+                <div class="gallery-info">
+                    <h3>{{ image.title }}</h3>
+                    {% if image.description %}
+                    <p>{{ image.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-images">
+            <p>暂无相册图片</p>
+        </div>
+        {% endif %}
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/" class="back-home">← 返回首页</a>
+        </div>
+    </div>
+</body>
+</html>
