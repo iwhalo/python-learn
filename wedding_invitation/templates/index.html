@@ -1,10 +1,20 @@
+<!--
+文件: index.html
+用途: 婚礼邀请函网站首页模板
+功能: 展示婚礼基本信息、倒计时、相册预览、导航链接等
+-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <!-- 页面基础信息设置 -->
     <meta charset="UTF-8">
+    <!-- 响应式设计视口设置 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 页面标题，动态显示婚礼标题或默认文本 -->
     <title>{{ wedding_event.title|default:"婚礼邀请" }} - 我们的特别日子</title>
+    <!-- 引入本地样式表 -->
     <link rel="stylesheet" href="/static/css/style.css">
+    <!-- 引入Google Fonts中文字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -290,14 +300,20 @@
 </head>
 <body>
     <div class="container">
-        <!-- 头部 -->
+        <!-- 页面头部区域，显示婚礼标题和新人姓名 -->
         <div class="header">
+            <!-- 动态显示婚礼标题，如果未设置则显示默认文本 -->
             <h1>{{ wedding_event.title|default:"我们的婚礼" }}</h1>
             
+            <!-- 条件显示新人姓名，只有当新娘和新郎姓名都存在时才显示 -->
             {% if wedding_event.bride_name and wedding_event.groom_name %}
+            <!-- 新人姓名展示区域，使用flex布局并排显示 -->
             <div class="couple-names">
+                <!-- 显示新娘姓名 -->
                 <div class="name">{{ wedding_event.bride_name }}</div>
+                <!-- 分隔符 -->
                 <div class="name">&</div>
+                <!-- 显示新郎姓名 -->
                 <div class="name">{{ wedding_event.groom_name }}</div>
             </div>
             {% endif %}
@@ -307,28 +323,40 @@
             </p>
         </div>
 
-        <!-- 导航链接 -->
+        <!-- 导航链接区域，提供到各个功能页面的快速访问 -->
         <div class="nav-links">
+            <!-- 婚礼倒计时页面链接 -->
             <a href="{% url 'countdown' %}" class="nav-link">婚礼倒计时</a>
+            <!-- 婚纱相册页面链接 -->
             <a href="{% url 'gallery' %}" class="nav-link">婚纱相册</a>
+            <!-- 宾客列表页面链接 -->
             <a href="{% url 'guest_list' %}" class="nav-link">宾客列表</a>
+            <!-- 地图位置页面链接 -->
             <a href="{% url 'map' %}" class="nav-link">地图位置</a>
+            <!-- RSVP确认出席页面链接 -->
             <a href="{% url 'rsvp' %}" class="nav-link">确认出席</a>
         </div>
 
-        <!-- 婚礼详情 -->
+        <!-- 婚礼详情卡片，显示婚礼的具体信息 -->
+        <!-- 只有当存在婚礼事件时才显示详情 -->
         {% if wedding_event %}
         <div class="event-card">
+            <!-- 婚礼详情标题 -->
             <h2>婚礼详情</h2>
+            <!-- 婚礼详情网格布局 -->
             <div class="event-details">
+                <!-- 婚礼日期信息 -->
                 <div class="detail-item">
                     <h3>婚礼日期</h3>
+                    <!-- 使用Django模板过滤器格式化日期时间 -->
                     <p>{{ wedding_event.event_date|date:"Y年m月d日 H:i" }}</p>
                 </div>
+                <!-- 婚礼举办地点信息 -->
                 <div class="detail-item">
                     <h3>举办地点</h3>
                     <p>{{ wedding_event.venue }}</p>
                 </div>
+                <!-- 婚礼详细地址信息 -->
                 <div class="detail-item">
                     <h3>详细地址</h3>
                     <p>{{ wedding_event.address }}</p>
@@ -344,56 +372,77 @@
         </div>
         {% endif %}
 
-        <!-- 倒计时 -->
+        <!-- 婚礼倒计时区域，显示距离婚礼还剩多长时间 -->
         <div class="countdown-section">
+            <!-- 倒计时标题 -->
             <h2 class="countdown-title">距离我们的大日子还有</h2>
+            <!-- 倒计时计时器，包含天、小时、分钟、秒四个部分 -->
             <div class="countdown-timer">
+                <!-- 天数倒计时 -->
                 <div class="countdown-item">
+                    <!-- 天数显示元素，ID用于JavaScript更新 -->
                     <div class="countdown-number" id="days">00</div>
                     <div class="countdown-label">天</div>
                 </div>
+                <!-- 小时倒计时 -->
                 <div class="countdown-item">
+                    <!-- 小时显示元素，ID用于JavaScript更新 -->
                     <div class="countdown-number" id="hours">00</div>
                     <div class="countdown-label">小时</div>
                 </div>
+                <!-- 分钟倒计时 -->
                 <div class="countdown-item">
+                    <!-- 分钟显示元素，ID用于JavaScript更新 -->
                     <div class="countdown-number" id="minutes">00</div>
                     <div class="countdown-label">分钟</div>
                 </div>
+                <!-- 秒数倒计时 -->
                 <div class="countdown-item">
+                    <!-- 秒数显示元素，ID用于JavaScript更新 -->
                     <div class="countdown-number" id="seconds">00</div>
                     <div class="countdown-label">秒</div>
                 </div>
             </div>
         </div>
 
-        <!-- RSVP按钮 -->
+        <!-- RSVP确认出席按钮，引导用户确认是否参加婚礼 -->
         <div style="text-align: center; margin: 40px 0;">
+            <!-- 链接到RSVP页面，让用户确认出席或发送祝福 -->
             <a href="{% url 'rsvp' %}" class="rsvp-button">确认出席 / 发送祝福</a>
         </div>
-        
-        <!-- 访问统计 -->
+            
+        <!-- 页面访问统计信息，显示当前页面被访问的次数 -->
         <div style="text-align: center; margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #d4af37;">
             <p style="margin: 0; color: #666;">
                 <strong>页面访问统计:</strong> 
+                <!-- 显示首页访问次数，如果没有统计数据则显示0 -->
                 本页面已被访问 <span style="color: #d4af37; font-weight: bold;">{{ homepage_visit_count|default:0 }}</span> 次
             </p>
         </div>
 
-        <!-- 相册预览 -->
+        <!-- 婚纱相册预览区域，显示婚礼相册中的图片 -->
+        <!-- 只有当存在相册图片时才显示相册部分 -->
         {% if gallery_images %}
         <div class="gallery-section">
+            <!-- 相册标题 -->
             <h2 class="gallery-title">婚纱相册</h2>
+            <!-- 图片网格布局 -->
             <div class="image-gallery">
+                <!-- 遍历相册图片列表 -->
                 {% for image in gallery_images %}
                 <div class="gallery-item">
+                    <!-- 检查图片是否存在，如果存在则显示实际图片，否则显示默认图片 -->
                     {% if image.has_image %}
+                    <!-- 显示实际的相册图片 -->
                     <img src="{{ image.get_image_url }}" alt="{{ image.title }}">
                     {% else %}
+                    <!-- 显示默认图片，如果默认图片也加载失败则显示备用图片 -->
                     <img src="/static/images/default_gallery.jpg" alt="{{ image.title }}" onerror="this.onerror=null;this.src='/static/images/default_image.png';">
                     {% endif %}
+                    <!-- 图片内容区域，显示图片标题 -->
                     <div class="gallery-item-content">
                         <div style="text-align: center;">
+                            <!-- 显示图片标题 -->
                             <h4 style="color: #d4af37; margin: 5px 0;">{{ image.title }}</h4>
                         </div>
                     </div>
@@ -406,32 +455,45 @@
 
     <script>
         // 婚礼倒计时功能
+        // 功能：计算并显示距离婚礼还有多少时间
         function updateCountdown() {
-            // 这里需要从后端获取婚礼日期，这里暂时用示例日期
+            // 从后端获取婚礼日期并转换为JavaScript Date对象
             const weddingDate = new Date('{{ wedding_event.event_date|date:"Y-m-d H:i:s" }}');
+            // 获取当前时间
             const now = new Date();
             
-            // 如果没有获取到婚礼日期，则设置一个示例日期
+            // 如果没有获取到有效的婚礼日期，则设置一个示例日期
             if (isNaN(weddingDate.getTime())) {
-                // 设置为未来一周
+                // 设置为未来一周，用于演示目的
                 const futureDate = new Date();
                 futureDate.setDate(futureDate.getDate() + 7);
                 var diff = futureDate - now;
             } else {
+                // 计算婚礼日期与当前时间的差值（毫秒）
                 var diff = weddingDate - now;
             }
             
+            // 如果倒计时仍在进行中（差值大于0）
             if (diff > 0) {
+                // 计算天数
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                // 计算小时数
                 const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                // 计算分钟数
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                // 计算秒数
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
                 
+                // 更新天数显示
                 document.getElementById('days').textContent = String(days).padStart(2, '0');
+                // 更新小时显示
                 document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                // 更新分钟显示
                 document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                // 更新秒数显示
                 document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
             } else {
+                // 如果婚礼已经举行，将所有时间显示为00
                 document.getElementById('days').textContent = '00';
                 document.getElementById('hours').textContent = '00';
                 document.getElementById('minutes').textContent = '00';
@@ -439,19 +501,23 @@
             }
         }
         
-        // 初始化并每秒更新一次倒计时
+        // 初始化倒计时并设置每秒更新一次
         updateCountdown();
         setInterval(updateCountdown, 1000);
         
-        // 添加一些动画效果
+        // 页面加载完成后添加动画效果
         document.addEventListener('DOMContentLoaded', function() {
-            // 为页面元素添加淡入效果
+            // 为页面主要元素添加淡入动画效果
             const elements = document.querySelectorAll('.event-card, .countdown-section, .gallery-section');
             elements.forEach((el, index) => {
+                // 初始状态：完全透明，向下偏移
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
+                // 延迟执行动画，创造顺序出现的效果
                 setTimeout(() => {
+                    // 添加过渡效果
                     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    // 最终状态：完全不透明，回到原位
                     el.style.opacity = '1';
                     el.style.transform = 'translateY(0)';
                 }, index * 200);

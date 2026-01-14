@@ -1,0 +1,492 @@
+{
+  "status": "1",
+  "count": "372",
+  "info": "OK",
+  "infocode": "10000",
+  "districts": [
+    {
+      "citycode": "010",
+      "adcode": "110000",
+      "name": "北京市",
+      "center": "116.407170,39.904623",
+      "level": "province",
+      "districts": [
+        {
+          "citycode": "010",
+          "adcode": "110101",
+          "name": "东城区",
+          "center": "116.418193,39.915725",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110102",
+          "name": "西城区",
+          "center": "116.366794,39.900284",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110105",
+          "name": "朝阳区",
+          "center": "116.434562,39.992923",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110106",
+          "name": "丰台区",
+          "center": "116.298499,39.865213",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110107",
+          "name": "石景山区",
+          "center": "116.227259,39.909404",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110108",
+          "name": "海淀区",
+          "center": "116.310905,39.955632",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110109",
+          "name": "门头沟区",
+          "center": "116.105385,39.937125",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110111",
+          "name": "房山区",
+          "center": "116.139141,39.735535",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110112",
+          "name": "通州区",
+          "center": "116.658347,39.908723",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110113",
+          "name": "顺义区",
+          "center": "116.653797,40.137597",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110114",
+          "name": "昌平区",
+          "center": "116.235917,40.218085",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110115",
+          "name": "大兴区",
+          "center": "116.338083,39.728209",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110116",
+          "name": "怀柔区",
+          "center": "116.637175,40.324286",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110117",
+          "name": "平谷区",
+          "center": "117.110828,40.143491",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110118",
+          "name": "密云区",
+          "center": "116.855479,40.377367",
+          "level": "district"
+        },
+        {
+          "citycode": "010",
+          "adcode": "110119",
+          "name": "延庆区",
+          "center": "115.985282,40.465331",
+          "level": "district"
+        }
+      ]
+    },
+    {
+      "citycode": "021",
+      "adcode": "310000",
+      "name": "上海市",
+      "center": "121.473701,31.230416",
+      "level": "province",
+      "districts": [
+        {
+          "citycode": "021",
+          "adcode": "310101",
+          "name": "黄浦区",
+          "center": "121.490446,31.222521",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310104",
+          "name": "徐汇区",
+          "center": "121.437519,31.188793",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310105",
+          "name": "长宁区",
+          "center": "121.424554,31.220957",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310106",
+          "name": "静安区",
+          "center": "121.448407,31.228786",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310107",
+          "name": "普陀区",
+          "center": "121.397841,31.240998",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310109",
+          "name": "虹口区",
+          "center": "121.484037,31.259038",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310110",
+          "name": "杨浦区",
+          "center": "121.522279,31.253506",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310112",
+          "name": "闵行区",
+          "center": "121.375794,31.102105",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310113",
+          "name": "宝山区",
+          "center": "121.489347,31.396586",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310114",
+          "name": "嘉定区",
+          "center": "121.243447,31.385295",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310115",
+          "name": "浦东新区",
+          "center": "121.538605,31.222395",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310116",
+          "name": "金山区",
+          "center": "121.329298,30.724942",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310117",
+          "name": "松江区",
+          "center": "121.228075,31.030859",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310118",
+          "name": "青浦区",
+          "center": "121.119299,31.149766",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310120",
+          "name": "奉贤区",
+          "center": "121.477412,30.918738",
+          "level": "district"
+        },
+        {
+          "citycode": "021",
+          "adcode": "310151",
+          "name": "崇明区",
+          "center": "121.397547,31.603537",
+          "level": "district"
+        }
+      ]
+    },
+    {
+      "citycode": "022",
+      "adcode": "120000",
+      "name": "天津市",
+      "center": "117.190182,39.125596",
+      "level": "province",
+      "districts": [
+        {
+          "citycode": "022",
+          "adcode": "120101",
+          "name": "和平区",
+          "center": "117.200021,39.084126",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120102",
+          "name": "河东区",
+          "center": "117.226912,39.120576",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120103",
+          "name": "河西区",
+          "center": "117.217503,39.098278",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120104",
+          "name": "南开区",
+          "center": "117.143918,39.116917",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120105",
+          "name": "河北区",
+          "center": "117.197516,39.144785",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120106",
+          "name": "红桥区",
+          "center": "117.158308,39.166036",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120110",
+          "name": "东丽区",
+          "center": "117.313372,39.092846",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120111",
+          "name": "西青区",
+          "center": "117.017859,39.106523",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120112",
+          "name": "津南区",
+          "center": "117.371794,38.989459",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120113",
+          "name": "北辰区",
+          "center": "117.134179,39.225615",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120114",
+          "name": "武清区",
+          "center": "117.057403,39.376994",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120115",
+          "name": "宝坻区",
+          "center": "117.308882,39.715421",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120116",
+          "name": "滨海新区",
+          "center": "117.654174,39.032857",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120117",
+          "name": "宁河区",
+          "center": "117.830119,39.328773",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120118",
+          "name": "静海区",
+          "center": "116.925244,38.935887",
+          "level": "district"
+        },
+        {
+          "citycode": "022",
+          "adcode": "120119",
+          "name": "蓟州区",
+          "center": "117.402183,40.044342",
+          "level": "district"
+        }
+      ]
+    },
+    {
+      "citycode": "023",
+      "adcode": "500000",
+      "name": "重庆市",
+      "center": "106.550455,29.563761",
+      "level": "province",
+      "districts": [
+        {
+          "citycode": "023",
+          "adcode": "500101",
+          "name": "万州区",
+          "center": "108.408661,30.807667",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500102",
+          "name": "涪陵区",
+          "center": "107.394552,29.703253",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500103",
+          "name": "渝中区",
+          "center": "106.575411,29.555687",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500104",
+          "name": "大渡口区",
+          "center": "106.489246,29.481501",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500105",
+          "name": "江北区",
+          "center": "106.568109,29.578095",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500106",
+          "name": "沙坪坝区",
+          "center": "106.427444,29.559630",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500107",
+          "name": "九龙坡区",
+          "center": "106.500828,29.509184",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500108",
+          "name": "南岸区",
+          "center": "106.551752,29.532650",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500109",
+          "name": "北碚区",
+          "center": "106.408134,29.789226",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500110",
+          "name": "綦江区",
+          "center": "106.655731,29.028557",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500111",
+          "name": "大足区",
+          "center": "105.710550,29.700926",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500112",
+          "name": "渝北区",
+          "center": "106.632796,29.721210",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500113",
+          "name": "巴南区",
+          "center": "106.517266,29.383508",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500114",
+          "name": "黔江区",
+          "center": "108.775726,29.531725",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500115",
+          "name": "长寿区",
+          "center": "107.082851,29.859517",
+          "level": "district"
+        },
+        {
+          "citycode": "023",
+          "adcode": "500116",
+          "name": "江津区",
+          "center": "106.259407,29.294920",
+          "level": "district"
+        }
+      ]
+    }
+  ]
+}

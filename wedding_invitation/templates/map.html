@@ -1,10 +1,17 @@
 <!DOCTYPE html>
+<!-- HTML5文档类型声明，确保浏览器使用最新标准模式渲染页面 -->
 <html lang="zh-CN">
+<!-- HTML根元素，设置语言为中国大陆简体中文 -->
 <head>
+    <!-- 设置文档字符编码为UTF-8，支持中文及其他多字节字符 -->
     <meta charset="UTF-8">
+    <!-- 设置视口元数据，确保页面在移动设备上正确缩放和显示 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 页面标题，动态显示婚礼事件标题，如果没有则显示默认的“婚礼邀请” -->
     <title>地图位置 - {{ wedding_event.title|default:"婚礼邀请" }}</title>
+    <!-- 引入项目自定义CSS样式表，包含通用样式定义 -->
     <link rel="stylesheet" href="/static/css/style.css">
+    <!-- 引入Google Fonts的思源宋体字体，提供优雅的中文字体显示 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -49,346 +56,645 @@
             margin: 30px 0;
         }
 
-        .location-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .info-details {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .info-icon {
-            font-size: 1.5rem;
-            color: #d4af37;
-        }
-
-        .info-text h3 {
-            color: #5a3d5c;
-            margin-bottom: 5px;
-        }
-
-        .info-text p {
-            color: #666;
-            margin: 0;
-        }
-
-        .map-placeholder {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            border-radius: 10px;
+        #amap-container {
+            width: 100%;
+            position: relative;
             height: 400px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .map-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: #5a3d5c;
-            font-size: 1.2rem;
-            border: 2px dashed #d4af37;
-        }
-
-        .directions {
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-        }
-
-        .directions h3 {
-            color: #d4af37;
-            margin-bottom: 15px;
-        }
-
-        .transport-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .transport-item {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .transport-icon {
-            font-size: 2rem;
-            color: #d4af37;
-            margin-bottom: 10px;
-        }
-
-        .transport-name {
-            font-weight: bold;
-            color: #5a3d5c;
+            background: rgba(248, 249, 250, 0.9);
+            z-index: 1000;
+            border-radius: 10px;
         }
 
         .back-home {
             display: inline-block;
-            margin-top: 20px;
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: bold;
             padding: 10px 20px;
-            border-radius: 20px;
-            background: white;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            background: #d4af37;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
         }
 
         .back-home:hover {
-            text-decoration: underline;
-            background: #f8f9fa;
+            background: #c19b2e;
         }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .location-info {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .map-placeholder {
-                height: 300px;
-            }
+        
+        /* 置信度指示器样式 */
+        .confidence-info {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .high-confidence {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .medium-confidence {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .low-confidence {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .unknown-confidence {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #d6d8db;
+        }
+        
+        /* 鹰眼图控件尺寸调整 */
+        .amap-overview {
+            width: 150px !important;
+            height: 112px !important;
         }
     </style>
 </head>
 <body>
+    <!-- 页面主容器，限制内容最大宽度并居中显示 -->
     <div class="container">
+        <!-- 页面头部区域，用于显示标题 -->
         <div class="header">
+            <!-- 婚礼地点标题 -->
             <h1>婚礼地点</h1>
-            <p>我们期待与您在以下地点分享喜悦</p>
         </div>
 
+        <!-- 检查是否存在婚礼事件信息 -->
         {% if wedding_event %}
+        <!-- 位置信息卡片，包含地图和详细信息 -->
         <div class="location-card">
-            <div class="location-info">
-                <div class="info-details">
-                    <div class="info-item">
-                        <div class="info-icon">💒</div>
-                        <div class="info-text">
-                            <h3>婚礼名称</h3>
-                            <p>{{ wedding_event.title }}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <div class="info-icon">📅</div>
-                        <div class="info-text">
-                            <h3>婚礼日期</h3>
-                            <p>{{ wedding_event.event_date|date:"Y年m月d日 H:i" }}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <div class="info-icon">📍</div>
-                        <div class="info-text">
-                            <h3>举办地点</h3>
-                            <p>{{ wedding_event.venue }}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <div class="info-icon">🏠</div>
-                        <div class="info-text">
-                            <h3>详细地址</h3>
-                            <p>{{ wedding_event.address }}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="directions">
-                        <h3>交通指南</h3>
-                        <div class="transport-options">
-                            <div class="transport-item">
-                                <div class="transport-icon">🚗</div>
-                                <div class="transport-name">自驾</div>
-                                <div class="transport-desc">提供停车位</div>
-                            </div>
-                            <div class="transport-item">
-                                <div class="transport-icon">🚇</div>
-                                <div class="transport-name">地铁</div>
-                                <div class="transport-desc">最近站点</div>
-                            </div>
-                            <div class="transport-item">
-                                <div class="transport-icon">🚌</div>
-                                <div class="transport-name">公交</div>
-                                <div class="transport-desc">多路公交可达</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="map-section">
-                    <div id="amap-container" style="width: 100%; height: 400px; border-radius: 10px; position: relative; background-color: #e3f2fd; visibility: hidden; opacity: 0; transition: opacity 0.3s, visibility 0.3s;">
-                        <div id="map-loading" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(248, 249, 250, 0.9); z-index: 1000;">
-                            <p>正在加载地图...</p>
-                        </div>
+            <!-- 地图展示区域 -->
+            <div class="map-section">
+                <!-- 高德地图容器，用于嵌入地图组件 -->
+                <div id="amap-container">
+                    <!-- 地图加载提示，当地图正在加载时显示 -->
+                    <div class="map-loading" id="map-loading">
+                        <p>正在加载地图...</p>
                     </div>
                 </div>
             </div>
+
+            <!-- 位置详细信息展示区域 -->
+            <div class="location-info">
+                <!-- 举办地点信息项 -->
+                <div class="info-item">
+                    <!-- 举办地点图标 -->
+                    <div class="info-icon">🏨</div>
+                    <!-- 举办地点文字信息 -->
+                    <div class="info-text">
+                        <h3>举办地点</h3>
+                        <!-- 动态显示婚礼举办地点 -->
+                        <p>{{ wedding_event.venue }}</p>
+                    </div>
+                </div>
+
+                <!-- 详细地址信息项 -->
+                <div class="info-item">
+                    <!-- 详细地址图标 -->
+                    <div class="info-icon">📍</div>
+                    <!-- 详细地址文字信息 -->
+                    <div class="info-text">
+                        <h3>详细地址</h3>
+                        <!-- 动态显示婚礼详细地址 -->
+                        <p>{{ wedding_event.address }}</p>
+                    </div>
+                </div>
+                
+                <!-- 检查是否成功获取到地理编码信息 -->
+                {% if map_config.coordinates_found and map_config.geocoding_details %}
+                <!-- 地理编码信息项 -->
+                <div class="info-item">
+                    <!-- 地理编码信息图标 -->
+                    <div class="info-icon">🔍</div>
+                    <!-- 地理编码详细信息 -->
+                    <div class="info-text">
+                        <h3>地理编码信息</h3>
+                        <!-- 显示地理编码匹配级别，如果未找到则显示默认值“未知” -->
+                        <p>匹配级别: {{ map_config.geocoding_details.level|default:"未知" }}</p>
+                        <!-- 显示地理编码匹配置信度 -->
+                        <p>置信度: 
+                            <!-- 根据置信度数值显示不同的置信度标签 -->
+                            {% if map_config.confidence == 5 %}
+                                <!-- 高置信度（5）显示“很高”标签 -->
+                                <span class="high-confidence">很高</span>
+                            {% elif map_config.confidence == 4 %}
+                                <!-- 高置信度（4）显示“高”标签 -->
+                                <span class="high-confidence">高</span>
+                            {% elif map_config.confidence == 3 %}
+                                <!-- 中等置信度（3）显示“中”标签 -->
+                                <span class="medium-confidence">中</span>
+                            {% elif map_config.confidence >= 1 %}
+                                <!-- 低置信度（1-2）显示“低”标签 -->
+                                <span class="low-confidence">低</span>
+                            {% else %}
+                                <!-- 未知置信度（0或负数）显示“未知”标签 -->
+                                <span class="unknown-confidence">未知</span>
+                            {% endif %}
+                        </p>
+                        <!-- 如果存在省份信息，则显示省份 -->
+                        {% if map_config.geocoding_details.province %}
+                        <p>省份: {{ map_config.geocoding_details.province }}</p>
+                        {% endif %}
+                        <!-- 如果存在城市信息，则显示城市 -->
+                        {% if map_config.geocoding_details.city %}
+                        <p>城市: {{ map_config.geocoding_details.city }}</p>
+                        {% endif %}
+                        <!-- 如果存在区域信息，则显示区域 -->
+                        {% if map_config.geocoding_details.district %}
+                        <p>区域: {{ map_config.geocoding_details.district }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- 如果未找到地理编码信息但存在地址，则显示警告信息 -->
+                {% elif wedding_event.address %}
+                <!-- 地理编码状态信息项 -->
+                <div class="info-item">
+                    <!-- 地理编码状态图标 -->
+                    <div class="info-icon">⚠️</div>
+                    <!-- 地理编码状态文字信息 -->
+                    <div class="info-text">
+                        <h3>地理编码状态</h3>
+                        <!-- 提示用户地址格式可能存在问题 -->
+                        <p>未能获取精确坐标，请检查地址格式是否正确</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
         </div>
+        <!-- 如果不存在婚礼事件信息，则显示提示信息 -->
         {% else %}
+        <!-- 位置信息卡片 -->
         <div class="location-card">
             <p>婚礼信息暂未设置</p>
         </div>
         {% endif %}
+
+        <!-- 返回首页按钮容器 -->
+        <div style="text-align: center; margin-top: 30px;">
+            <!-- 返回首页链接，点击后跳转到主页 -->
+            <a href="/" class="back-home">← 返回首页</a>
+        </div>
     </div>
-    
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="/" class="back-home">← 返回首页</a>
-    </div>
-    </div>
-    
-    <!-- 高德地图API -->
+
+    <!-- 高德地图安全密钥配置（如果设置了安全密钥） -->
+    <!-- 配置高德地图的安全密钥，用于保护API调用安全 -->
+    {% if amap_security_js_code %}
+    <!-- 如果存在安全密钥，则在客户端配置安全设置 -->
     <script type="text/javascript">
-        // 检查API密钥是否有效
-        var apiKey = '{{ amap_api_key|default:"" }}';
-        if (!apiKey || apiKey.trim() === '') {
-            console.warn('高德地图API密钥未配置，请在settings.py中配置AMAP_API_KEY');
-            // 如果没有API密钥，仍然尝试加载地图（可能使用默认配置）
+        // 高德地图安全配置对象，用于设置安全密钥
+        window._AMapSecurityConfig = {
+            // 设置安全密钥，用于验证API调用的合法性
+            securityJsCode: '{{ amap_security_js_code }}'
         }
-        // 动态加载高德地图API
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = 'https://webapi.amap.com/maps?v=2.0&key=' + apiKey;
-        document.head.appendChild(script);
     </script>
-    
-    <script>
-        // 等待页面加载完成
-        document.addEventListener('DOMContentLoaded', function() {
-            // 确保地图容器已经渲染完成
-            setTimeout(function() {
-                // 确保地图容器可见
-                const mapContainer = document.getElementById('amap-container');
-                if (mapContainer) {
-                    mapContainer.style.visibility = 'visible';
-                    mapContainer.style.opacity = '1';
-                } else {
-                    console.error('地图容器未找到');
+    <!-- 结束安全密钥配置条件判断 -->
+    {% endif %}
+
+    <!-- 高德地图JS API 2.0 -->
+    <!-- 地图初始化和配置脚本 -->
+    <script type="text/javascript">
+        // 初始化地图的主函数
+        // 从后端获取地图配置信息并初始化高德地图组件
+        function initMap() {
+            // 通过fetch API从后端获取地图配置
+            // 请求/api/map-config/端点获取地图所需的配置信息
+            fetch('/api/map-config/')
+                // 将响应转换为JSON格式
+                .then(response => response.json())
+                // 处理JSON响应数据
+                .then(data => {
+                    // 检查API调用是否成功
+                    if (data.success) {
+                        // 从响应数据中提取地图配置
+                        var mapConfig = data.map_config;
+                        // 使用获取到的配置初始化地图
+                        initializeMap(mapConfig);
+                    } else {
+                        // 如果API调用失败，在控制台记录错误信息
+                        console.error('获取地图配置失败:', data.message);
+                        // 使用默认配置初始化地图
+                        var defaultConfig = {
+                            // 默认中心纬度（北京天安门）
+                            centerLat: 39.9042,
+                            // 默认中心经度（北京天安门）
+                            centerLng: 116.4074,
+                            // 默认缩放级别
+                            zoom: 12,
+                            // 标记点标题
+                            markerTitle: '婚礼地点',
+                            // 标记点内容
+                            markerContent: '地图配置加载失败',
+                            // 坐标是否找到的标志
+                            coordinatesFound: false,
+                            // 匹配置信度
+                            confidence: 0,
+                            // 地理编码详细信息
+                            geocodingDetails: {}
+                        };
+                        // 使用默认配置初始化地图
+                        initializeMap(defaultConfig);
+                    }
+                })
+                // 捕获并处理网络请求错误
+                .catch(error => {
+                    // 在控制台记录网络错误信息
+                    console.error('获取地图配置时出错:', error);
+                    // 使用默认配置初始化地图
+                    var defaultConfig = {
+                        // 默认中心纬度（北京天安门）
+                        centerLat: 39.9042,
+                        // 默认中心经度（北京天安门）
+                        centerLng: 116.4074,
+                        // 默认缩放级别
+                        zoom: 12,
+                        // 标记点标题
+                        markerTitle: '婚礼地点',
+                        // 标记点内容
+                        markerContent: '网络错误，地图配置加载失败',
+                        // 坐标是否找到的标志
+                        coordinatesFound: false,
+                        // 匹配置信度
+                        confidence: 0,
+                        // 地理编码详细信息
+                        geocodingDetails: {}
+                    };
+                    // 使用默认配置初始化地图
+                    initializeMap(defaultConfig);
+                });
+        }
+        
+        // 初始化地图的具体实现函数
+        // 接收地图配置参数并创建高德地图实例
+        function initializeMap(mapConfig) {
+            // 确保地图容器DOM元素存在并可见
+            // 获取地图容器元素
+            const mapContainer = document.getElementById('amap-container');
+            // 获取地图加载提示元素
+            const loadingElement = document.getElementById('map-loading');
+
+            // 检查地图容器是否存在
+            if (!mapContainer) {
+                // 如果地图容器不存在，在控制台记录错误
+                console.error('地图容器未找到');
+                // 如果加载提示元素存在，更新其内容
+                if (loadingElement) {
+                    loadingElement.innerHTML = '<p>地图容器未找到</p>';
                 }
-                // 从服务端获取地图配置
-                const mapConfig = {
-                    centerLat: parseFloat('{{ map_config.center_lat }}'),
-                    centerLng: parseFloat('{{ map_config.center_lng }}'),
-                    zoom: parseInt('{{ map_config.zoom }}'),
-                    markerTitle: "{{ map_config.marker_title|escapejs }}",
-                    markerContent: "{{ map_config.marker_content|escapejs }}",
-                    coordinatesFound: {{ map_config.coordinates_found|yesno:"true,false" }}
-                };
-                
-                // 创建地图实例
-                const map = new AMap.Map('amap-container', {
-                    zoom: mapConfig.zoom,
-                    center: [mapConfig.centerLng, mapConfig.centerLat],
-                    mapStyle: 'amap://styles/normal'
-                });
-                        
-                // 确保地图容器大小更新
-                setTimeout(() => {
-                    map && map.resize();
-                }, 100);
-                        
-                // 监听地图加载完成事件
-                map.on('complete', function() {
-                    const loadingElement = document.getElementById('map-loading');
-                    if (loadingElement) {
-                        loadingElement.style.display = 'none';
-                    }
-                    
-                    // 显示地图容器
-                    const mapContainer = document.getElementById('amap-container');
-                    if (mapContainer) {
-                        mapContainer.style.visibility = 'visible';
-                        mapContainer.style.opacity = '1';
-                    }
-                });
-                        
-                // 监听地图加载错误事件
-                map.on('error', function(err) {
-                    console.error('地图加载错误:', err);
-                    const loadingElement = document.getElementById('map-loading');
-                    if (loadingElement) {
-                        loadingElement.innerHTML = '<p>地图加载失败，请稍后重试</p>';
-                    }
-                });
-                
-                // 检查地图是否成功初始化
-                if (!map) {
-                    console.error('高德地图初始化失败');
-                    const loadingElement = document.getElementById('map-loading');
-                    if (loadingElement) {
-                        loadingElement.innerHTML = '<p>地图初始化失败</p>';
-                    }
-                    
-                    // 即使初始化失败也要显示容器，让用户能看到错误信息
-                    const mapContainer = document.getElementById('amap-container');
-                    if (mapContainer) {
-                        mapContainer.style.visibility = 'visible';
-                        mapContainer.style.opacity = '1';
-                    }
+                // 终止函数执行
+                return;
+            }
+
+            // 验证并处理坐标有效性，然后初始化地图
+            // 设置默认中心坐标（北京天安门）
+            let validCenter = [116.4074, 39.9042];
+            // 设置默认缩放级别
+            let validZoom = 12;
+            
+            // 检查地图配置中的坐标是否有效
+            if (mapConfig.center_lat && mapConfig.center_lng && 
+                !isNaN(parseFloat(mapConfig.center_lat)) && 
+                !isNaN(parseFloat(mapConfig.center_lng))) {
+                // 如果坐标有效，使用配置中的坐标
+                validCenter = [parseFloat(mapConfig.center_lng), parseFloat(mapConfig.center_lat)];
+                // 使用配置中的缩放级别，如果未设置则使用默认值
+                validZoom = mapConfig.zoom || 12;
+            } else {
+                // 如果坐标无效，在控制台记录警告信息
+                console.warn('使用默认坐标初始化地图');
+            }
+            
+            // 创建高德地图实例
+            const map = new AMap.Map('amap-container', {
+                // 设置地图缩放级别
+                zoom: validZoom,
+                // 设置地图中心点坐标
+                center: validCenter,
+                // 设置地图样式为普通样式，包含完整地图信息
+                mapStyle: 'amap://styles/normal',
+                // 设置视图模式为2D
+                viewMode: '2D',
+                // 启用地图自适应窗口大小变化
+                resizeEnable: true,
+                // 显示地图标签（包括道路名称、建筑物名称等）
+                showLabel: true,
+                // 允许缩放级别超出默认范围
+                expandZoomRange: true
+            });
+
+            // 加载并添加地图控件和图层
+            // 加载所需的插件并初始化
+            AMap.plugin(['AMap.ToolBar', 'AMap.Scale', 'AMap.HawkEye', 'AMap.TileLayer.RoadNet', 'AMap.Buildings'], function() {
+                try {
+                    // 添加比例尺控件，显示当前地图的比例尺
+                    map.addControl(new AMap.Scale());
+
+                    // 添加鹰眼图控件，提供全局地图概览
+                    map.addControl(new AMap.HawkEye({isOpen: true, size: new AMap.Size(150, 112)}));
+
+                    // 添加工具栏控件，提供地图操作按钮
+                    map.addControl(new AMap.ToolBar());
+
+                    // 添加路网图层，确保显示道路名称和其他道路相关信息
+                    var roadNetLayer = new AMap.TileLayer.RoadNet({
+                        // 设置图层适用的缩放级别范围
+                        zooms: [4, 20],
+                        // 设置图层透明度
+                        opacity: 1,
+                        // 设置图层层级
+                        zIndex: 9
+                    });
+                    // 将路网图层添加到地图
+                    map.add(roadNetLayer);
+
+                    // 添加建筑物图层，显示建筑物的立体效果
+                    var buildings = new AMap.Buildings({
+                        // 设置建筑物图层适用的缩放级别范围
+                        zooms: [14, 20],
+                        // 设置建筑物高度系数
+                        heightFactor: 1.2,
+                        // 设置建筑物墙体颜色
+                        wallColor: 'rgb(166, 226, 255)',
+                        // 设置建筑物屋顶颜色
+                        roofColor: 'rgb(220, 231, 255)'
+                    });
+                    // 将建筑物图层添加到地图
+                    map.add(buildings);
+
+                    // 设置地图显示要素，确保显示完整的地图信息
+                    map.setFeatures(['bg', 'road', 'building', 'point', 'label']);
+
+                } catch (e) {
+                    // 如果添加控件或图层失败，在控制台记录错误
+                    console.error('添加地图控件或图层失败:', e);
                 }
-                        
-                // 只有当有标记点信息时才添加标记点
-                if (mapConfig.markerTitle || mapConfig.markerContent) {
-                    // 添加标记点
+            });
+
+            // 监听地图加载完成事件，在地图完全加载后添加标记点和信息窗体
+            map.on('complete', function() {
+                // 检查坐标有效性后再添加标记点
+                if (mapConfig.center_lat && mapConfig.center_lng && 
+                    !isNaN(parseFloat(mapConfig.center_lat)) && 
+                    !isNaN(parseFloat(mapConfig.center_lng))) {
+                    
+                    // 创建标记点实例
                     const marker = new AMap.Marker({
-                        position: [mapConfig.centerLng, mapConfig.centerLat],
-                        title: mapConfig.markerTitle
+                        // 设置标记点位置坐标
+                        position: [parseFloat(mapConfig.center_lng), parseFloat(mapConfig.center_lat)],
+                        // 设置标记点标题
+                        title: mapConfig.marker_title,
+                        // 设置标记点标签
+                        label: {
+                            // 设置标签内容
+                            content: mapConfig.marker_title,
+                            // 设置标签偏移量
+                            offset: new AMap.Pixel(0, -20)
+                        }
                     });
-                            
+                    // 将标记点添加到地图
                     map.add(marker);
+                    
+                    // 添加信息窗体，显示标记点的详细信息
+                    if (mapConfig.marker_content) {
+                        // 初始化信息窗体HTML内容
+                        let contentHtml = `<div style="padding: 10px; max-width: 300px;">`;
+                        // 添加标题
+                        contentHtml += `<strong>${mapConfig.marker_title}</strong><br/>`;
+                        // 添加内容
+                        contentHtml += `${mapConfig.marker_content}<br/>`;
+                        
+                        // 如果有地理编码详细信息，显示匹配置信度
+                        if (mapConfig.coordinates_found && mapConfig.confidence > 0) {
+                            // 初始化置信度文本
+                            let confidenceText = '';
+                            // 初始化置信度CSS类
+                            let confidenceClass = '';
                             
-                    // 添加信息窗体
-                    const infoWindow = new AMap.InfoWindow({
-                        content: `<div style="padding: 10px; max-width: 300px;"><strong>${mapConfig.markerTitle}</strong><br/>${mapConfig.markerContent}</div>`,
-                        offset: new AMap.Pixel(0, -30)
-                    });
+                            // 根据置信度数值设置对应的文本和CSS类
+                            switch(mapConfig.confidence) {
+                                // 低置信度（1-2）
+                                case 1:
+                                case 2:
+                                    confidenceText = '低';
+                                    confidenceClass = 'low-confidence';
+                                    break;
+                                // 中置信度（3）
+                                case 3:
+                                    confidenceText = '中';
+                                    confidenceClass = 'medium-confidence';
+                                    break;
+                                // 高置信度（4-5）
+                                case 4:
+                                case 5:
+                                    confidenceText = '高';
+                                    confidenceClass = 'high-confidence';
+                                    break;
+                                // 默认情况（其他值）
+                                default:
+                                    confidenceText = '未知';
+                                    confidenceClass = 'unknown-confidence';
+                            }
                             
-                    // 点击标记点显示信息窗体
-                    marker.on('click', function() {
-                        infoWindow.open(map, marker.getPosition());
-                    });
-                            
-                    // 自动打开信息窗体
-                    infoWindow.open(map, marker.getPosition());
+                            // 添加置信度信息到HTML内容
+                            contentHtml += `<small class="confidence-info ${confidenceClass}">匹配置信度: ${confidenceText}</small>`;
+                        }
+                        
+                        // 结束HTML内容
+                        contentHtml += `</div>`;
+                        
+                        // 检查标记点坐标有效性后再创建信息窗体
+                        const markerPosition = marker.getPosition();
+                        if (markerPosition && !isNaN(markerPosition.lat) && !isNaN(markerPosition.lng)) {
+                            // 创建信息窗体实例
+                            const infoWindow = new AMap.InfoWindow({
+                                // 设置信息窗体内容
+                                content: contentHtml,
+                                // 设置信息窗体偏移量
+                                offset: new AMap.Pixel(0, -30)
+                            });
+                            // 在地图上打开信息窗体
+                            infoWindow.open(map, markerPosition);
+                        } else {
+                            // 如果标记点位置无效，在控制台记录警告
+                            console.warn('无效的标记位置，跳过信息窗体创建');
+                        }
+                    }
                 } else {
-                    // 如果没有标记点信息，至少显示默认位置
+                    // 如果配置中的坐标无效，在控制台记录警告
+                    console.warn('无效的坐标，跳过标记点创建');
+                    // 使用默认坐标作为备选方案创建标记点
                     const defaultMarker = new AMap.Marker({
-                        position: [mapConfig.centerLng, mapConfig.centerLat],
-                        title: '默认位置'
+                        // 使用默认坐标（北京天安门）
+                        position: [116.4074, 39.9042],
+                        // 使用配置中的标题或默认标题
+                        title: mapConfig.marker_title || '婚礼地点',
+                        // 设置标记点标签
+                        label: {
+                            // 使用配置中的标题或默认标题
+                            content: mapConfig.marker_title || '婚礼地点',
+                            // 设置标签偏移量
+                            offset: new AMap.Pixel(0, -20)
+                        }
                     });
-                            
+                    // 将默认标记点添加到地图
                     map.add(defaultMarker);
+                    
+                    // 为默认标记点添加信息窗体
+                    if (mapConfig.marker_content) {
+                        // 初始化信息窗体HTML内容
+                        let contentHtml = `<div style="padding: 10px; max-width: 300px;">`;
+                        // 添加标题
+                        contentHtml += `<strong>${mapConfig.marker_title || '婚礼地点'}</strong><br/>`;
+                        // 添加内容
+                        contentHtml += `${mapConfig.marker_content}<br/>`;
+                        
+                        // 结束HTML内容
+                        contentHtml += `</div>`;
+                        
+                        // 创建信息窗体实例
+                        const infoWindow = new AMap.InfoWindow({
+                            // 设置信息窗体内容
+                            content: contentHtml,
+                            // 设置信息窗体偏移量
+                            offset: new AMap.Pixel(0, -30)
+                        });
+                        // 在地图上打开信息窗体
+                        infoWindow.open(map, [116.4074, 39.9042]);
+                    }
                 }
-                        
-                        
-                        
-                // 如果未找到特定地址坐标，显示提示
-                if (!mapConfig.coordinatesFound) {
-                    const infoWindow = new AMap.InfoWindow({
-                        content: '<div style="padding: 10px;"><strong>当前位置</strong><br/>这是默认显示位置<br/>请在管理后台设置具体婚礼地址以精确定位</div>',
-                        offset: new AMap.Pixel(0, -30)
-                    });
-                    infoWindow.open(map, [mapConfig.centerLng, mapConfig.centerLat]);
+                
+                // 地图加载完成后隐藏加载提示
+                console.log('地图加载完成');
+                // 如果加载提示元素存在，隐藏它
+                if (loadingElement) {
+                    loadingElement.style.display = 'none';
                 }
-            }, 150);  // 稍微延迟确保DOM完全渲染
-        });
+            });
+
+            // 监听地图加载错误事件，处理地图加载失败的情况
+            map.on('error', function(err) {
+                // 在控制台记录地图加载错误
+                console.error('地图加载错误:', err);
+                // 如果加载提示元素存在，更新其内容为错误信息
+                if (loadingElement) {
+                    loadingElement.innerHTML = '<p>地图加载失败，请检查网络连接</p>';
+                }
+            });
+        }
+    </script>
+
+    <!-- 加载高德地图API -->
+    <!-- 动态加载高德地图API脚本 -->
+    <script type="text/javascript">
+        // 动态加载高德地图API的函数
+        // 检查API是否已加载，如果未加载则从服务器获取配置并加载API
+        function loadAMapAPI() {
+            // 检查高德地图API是否已经加载
+            // 通过检测全局变量AMap是否存在来判断
+            if (typeof AMap !== 'undefined') {
+                // 如果API已加载，直接调用地图初始化函数
+                initMap();
+                // 终止函数执行
+                return;
+            }
+                
+            // 从后端获取配置信息以获取API密钥
+            // 发起fetch请求获取地图配置和API密钥
+            fetch('/api/map-config/')
+                // 将响应转换为JSON格式
+                .then(response => response.json())
+                // 处理JSON响应数据
+                .then(data => {
+                    // 检查API调用是否成功
+                    if (data.success) {
+                        // 动态创建script标签用于加载高德地图API
+                        var script = document.createElement('script');
+                        // 设置脚本类型为JavaScript
+                        script.type = 'text/javascript';
+                        // 从后端响应中获取API密钥，如果不存在则从模板变量获取
+                        var jsApiKey = data.js_api_key || '{{ amap_api_key|default:"" }}';
+                        // 检查是否获取到有效的API密钥
+                        if (!jsApiKey) {
+                            // 如果没有API密钥，在控制台记录错误
+                            console.error('未配置高德地图API密钥，请在settings.py中设置AMAP_JS_API_KEY');
+                            // 获取加载提示元素
+                            const loadingElement = document.getElementById('map-loading');
+                            // 如果加载提示元素存在，更新其内容
+                            if (loadingElement) {
+                                loadingElement.innerHTML = '<p>未配置API密钥，请联系管理员</p>'; 
+                            }
+                            // 终止函数执行
+                            return;
+                        }
+                        // 设置脚本源URL，包含API密钥和回调函数
+                        script.src = 'https://webapi.amap.com/maps?v=2.0&key=' + jsApiKey + '&callback=initMap';
+                        // 设置脚本加载错误处理函数
+                        script.onerror = function() {
+                            // 在控制台记录API加载失败错误
+                            console.error('高德地图API加载失败');
+                            // 获取加载提示元素
+                            const loadingElement = document.getElementById('map-loading');
+                            // 如果加载提示元素存在，更新其内容为错误信息
+                            if (loadingElement) {
+                                loadingElement.innerHTML = '<p>地图API加载失败，请检查网络连接或API密钥配置</p>'; 
+                            }
+                        };
+                        // 将脚本标签添加到页面头部，开始加载API
+                        document.head.appendChild(script);
+                    } else {
+                        // 如果无法获取地图配置，在控制台记录错误
+                        console.error('无法获取地图配置:', data.message);
+                        // 获取加载提示元素
+                        const loadingElement = document.getElementById('map-loading');
+                        // 如果加载提示元素存在，更新其内容
+                        if (loadingElement) {
+                            loadingElement.innerHTML = '<p>无法获取地图配置信息</p>'; 
+                        }
+                    }
+                })
+                // 捕获并处理网络请求错误
+                .catch(error => {
+                    // 在控制台记录获取配置时的错误
+                    console.error('获取地图配置时出错:', error);
+                    // 获取加载提示元素
+                    const loadingElement = document.getElementById('map-loading');
+                    // 如果加载提示元素存在，更新其内容
+                    if (loadingElement) {
+                        loadingElement.innerHTML = '<p>获取地图配置时出错</p>'; 
+                    }
+                });
+        }
+            
+        // 页面加载完成后加载地图API
+        // 检查文档是否仍在加载状态
+        if (document.readyState === 'loading') {
+            // 如果文档仍在加载，等待DOM内容加载完成后再加载API
+            document.addEventListener('DOMContentLoaded', loadAMapAPI);
+        } else {
+            // 如果文档已完成加载，直接加载API
+            loadAMapAPI();
+        }
     </script>
 </body>
 </html>

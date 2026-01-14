@@ -1,12 +1,31 @@
-/* 婚礼邀请通用样式 */
+/*
+ * 婚礼邀请函网站通用样式表
+ * 文件: style.css
+ * 用途: 定义网站的整体外观、按钮、卡片、表单等UI组件样式
+ * 作者: Wedding Invitation System
+ * 版本: 1.0
+ */
 
-/* 基础样式重置 */
+/*
+ * 基础样式重置
+ * 用途: 重置所有元素的默认边距和内边距，确保在不同浏览器中的一致性
+ * 设置box-sizing为border-box，使width和height包含padding和border
+ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/*
+ * 页面主体样式
+ * 用途: 定义页面整体的字体、背景、文字颜色等基础样式
+ * 字体: 使用'Noto Serif SC'衬线字体，提供优雅的中文显示效果
+ * 背景: 使用柔和的渐变色，营造温馨浪漫的氛围
+ * 颜色: 使用深紫色#5a3d5c作为主要文字颜色
+ * 行高: 设置为1.6，提高文字可读性
+ * 溢出: 隐藏水平滚动条，保持页面整洁
+ */
 body {
     font-family: 'Noto Serif SC', serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
@@ -15,13 +34,27 @@ body {
     overflow-x: hidden;
 }
 
+/*
+ * 容器样式
+ * 用途: 定义页面主要内容区域的布局容器
+ * 最大宽度: 限制在1200px，确保在大屏幕上内容不会过宽
+ * 居中: 使用margin: 0 auto实现水平居中
+ * 内边距: 设置20px，提供适当的内容边距
+ */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* 按钮样式 */
+/*
+ * 通用按钮样式
+ * 用途: 定义网站中所有按钮的基础样式
+ * 显示: inline-block，允许设置宽高同时保持在行内
+ * 内边距: 12px 24px，提供舒适的点击区域
+ * 圆角: 25px，创建圆润的按钮外观
+ * 过渡: 0.3s ease，为悬停效果提供平滑过渡
+ */
 .btn {
     display: inline-block;
     padding: 12px 24px;
@@ -35,6 +68,12 @@ body {
     font-size: 16px;
 }
 
+/*
+ * 主要按钮样式
+ * 用途: 定义主要操作按钮的样式，如提交、确认等
+ * 背景: 使用金色渐变，体现婚礼的高贵典雅
+ * 颜色: 白色文字，确保良好的对比度
+ */
 .btn-primary {
     background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
     color: white;
@@ -46,6 +85,13 @@ body {
     box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
 }
 
+/*
+ * 次要按钮样式
+ * 用途: 定义次要操作按钮的样式，如取消、返回等
+ * 背景: 白色，保持简洁
+ * 颜色: 深紫色文字，与整体风格一致
+ * 边框: 浅灰色边框，提供视觉边界
+ */
 .btn-secondary {
     background: white;
     color: #5a3d5c;
@@ -57,7 +103,15 @@ body {
     border-color: #d4af37;
 }
 
-/* 卡片样式 */
+/*
+ * 卡片样式
+ * 用途: 定义内容卡片的样式，用于展示各种信息模块
+ * 背景: 白色背景，提供清晰的内容展示区域
+ * 圆角: 15px圆角，创建现代感设计
+ * 内边距: 30px，提供充足的内容空间
+ * 阴影: 轻微阴影，增加层次感
+ * 过渡: transform和box-shadow过渡，提供悬停动效
+ */
 .card {
     background: white;
     border-radius: 15px;
@@ -67,12 +121,23 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/*
+ * 卡片悬停效果
+ * 用途: 当鼠标悬停在卡片上时提供视觉反馈
+ * 位移: 向上移动5px，模拟抬起效果
+ * 阴影: 增强阴影，突出卡片的立体感
+ */
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-/* 标题样式 */
+/*
+ * 标题样式
+ * 用途: 统一定义各级标题的颜色和粗细
+ * 颜色: 深紫色#5a3d5c，与整体设计风格一致
+ * 字重: 700，确保标题的醒目效果
+ */
 h1, h2, h3, h4, h5, h6 {
     color: #5a3d5c;
     font-weight: 700;
@@ -93,11 +158,21 @@ h3 {
     margin-bottom: 15px;
 }
 
-/* 表单样式 */
+/*
+ * 表单样式
+ * 用途: 定义表单元素的样式，包括标签、输入框等
+ */
 .form-group {
     margin-bottom: 20px;
 }
 
+/*
+ * 表单标签样式
+ * 用途: 定义表单标签的显示方式、间距和颜色
+ * 显示: block，确保标签独占一行
+ * 字重: bold，突出标签的重要性
+ * 颜色: 深紫色，与整体设计风格一致
+ */
 .form-group label {
     display: block;
     margin-bottom: 8px;
@@ -105,6 +180,15 @@ h3 {
     color: #5a3d5c;
 }
 
+/*
+ * 表单控件样式
+ * 用途: 定义输入框、选择框等表单控件的样式
+ * 宽度: 100%，使其充满容器宽度
+ * 内边距: 12px 15px，提供舒适的输入空间
+ * 边框: 浅灰色边框，提供视觉边界
+ * 圆角: 8px，创建圆润外观
+ * 过渡: 边框颜色过渡，提供焦点状态反馈
+ */
 .form-control {
     width: 100%;
     padding: 12px 15px;
@@ -115,12 +199,24 @@ h3 {
     transition: border-color 0.3s ease;
 }
 
+/*
+ * 表单控件焦点状态
+ * 用途: 定义表单控件获得焦点时的样式
+ * 轮廓: 隐藏默认轮廓
+ * 边框颜色: 金色，提供明确的焦点指示
+ */
 .form-control:focus {
     outline: none;
     border-color: #d4af37;
 }
 
-/* 响应式网格 */
+/*
+ * 响应式网格布局
+ * 用途: 创建自适应的网格布局，根据屏幕大小自动调整列数
+ * 显示: grid，启用CSS Grid布局
+ * 列设置: 自动适配，最小宽度300px，最大为1fr（剩余空间）
+ * 间距: 25px，提供元素间的合适间隔
+ */
 .grid-responsive {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -141,24 +237,48 @@ h3 {
     text-align: right;
 }
 
-/* Flex布局 */
+/*
+ * Flex布局样式
+ * 用途: 提供常用的Flexbox布局类
+ */
+
+/*
+ * 居中Flex布局
+ * 用途: 在主轴和交叉轴上都居中对齐子元素
+ * 应用场景: 模态框、图标居中等
+ */
 .flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/*
+ * 两端对齐Flex布局
+ * 用途: 子元素沿主轴两端对齐，垂直居中
+ * 应用场景: 导航栏、表单布局等
+ */
 .flex-between {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-/* 动画效果 */
+/*
+ * 淡入动画效果
+ * 用途: 为元素添加淡入并向上滑动的进入动画
+ * 持续时间: 0.6秒
+ * 缓动函数: ease-in，开始缓慢加速
+ */
 .fade-in {
     animation: fadeIn 0.6s ease-in;
 }
 
+/*
+ * 淡入动画关键帧定义
+ * from: 初始状态 - 完全透明，向下偏移20px
+ * to: 结束状态 - 完全不透明，回到原始位置
+ */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -170,7 +290,14 @@ h3 {
     }
 }
 
-/* 加载动画 */
+/*
+ * 加载动画
+ * 用途: 创建一个旋转的加载指示器
+ * 显示: inline-block，保持在行内同时可设置宽高
+ * 尺寸: 20x20像素，适合嵌入文本中
+ * 边框: 半透明白色边框，顶部为纯白色，形成旋转效果
+ * 动画: 持续旋转，无限循环
+ */
 .loading {
     display: inline-block;
     width: 20px;
@@ -181,6 +308,10 @@ h3 {
     animation: spin 1s ease-in-out infinite;
 }
 
+/*
+ * 旋转动画关键帧定义
+ * to: 旋转360度，形成完整的旋转循环
+ */
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
@@ -240,7 +371,11 @@ h3 {
     clear: both;
 }
 
-/* 媒体查询 - 平板设备 */
+/*
+ * 媒体查询 - 平板设备
+ * 用途: 针对平板设备（最大宽度768px）调整样式
+ * 调整内容: 容器内边距、标题字体大小、网格布局、Flex布局方向
+ */
 @media (max-width: 768px) {
     .container {
         padding: 15px;
@@ -266,7 +401,11 @@ h3 {
     }
 }
 
-/* 媒体查询 - 手机设备 */
+/*
+ * 媒体查询 - 手机设备
+ * 用途: 针对手机设备（最大宽度480px）调整样式
+ * 调整内容: 容器内边距、标题字体大小、卡片内边距、按钮宽度
+ */
 @media (max-width: 480px) {
     .container {
         padding: 10px;
