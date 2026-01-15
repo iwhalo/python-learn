@@ -2,426 +2,523 @@
  * 婚礼邀请函网站通用样式表
  * 文件: style.css
  * 用途: 定义网站的整体外观、按钮、卡片、表单等UI组件样式
- * 作者: Wedding Invitation System
- * 版本: 1.0
  */
 
-/*
- * 基础样式重置
- * 用途: 重置所有元素的默认边距和内边距，确保在不同浏览器中的一致性
- * 设置box-sizing为border-box，使width和height包含padding和border
- */
+/* 基础样式重置 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/*
- * 页面主体样式
- * 用途: 定义页面整体的字体、背景、文字颜色等基础样式
- * 字体: 使用'Noto Serif SC'衬线字体，提供优雅的中文显示效果
- * 背景: 使用柔和的渐变色，营造温馨浪漫的氛围
- * 颜色: 使用深紫色#5a3d5c作为主要文字颜色
- * 行高: 设置为1.6，提高文字可读性
- * 溢出: 隐藏水平滚动条，保持页面整洁
- */
+/* 页面主体样式 */
 body {
     font-family: 'Noto Serif SC', serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+    background: #fdf5e6; /* 温暖的米色背景 */
     color: #5a3d5c;
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow: hidden; /* 禁用原生滚动 */
+    position: relative;
 }
 
-/*
- * 容器样式
- * 用途: 定义页面主要内容区域的布局容器
- * 最大宽度: 限制在1200px，确保在大屏幕上内容不会过宽
- * 居中: 使用margin: 0 auto实现水平居中
- * 内边距: 设置20px，提供适当的内容边距
- */
+/* 容器样式 */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/*
- * 通用按钮样式
- * 用途: 定义网站中所有按钮的基础样式
- * 显示: inline-block，允许设置宽高同时保持在行内
- * 内边距: 12px 24px，提供舒适的点击区域
- * 圆角: 25px，创建圆润的按钮外观
- * 过渡: 0.3s ease，为悬停效果提供平滑过渡
- */
-.btn {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 25px;
-    text-decoration: none;
+/* --- 喜庆元素 --- */
+body::before, body::after {
+    content: '囍';
+    position: absolute;
+    font-size: 5rem;
+    color: rgba(220, 20, 60, 0.15);
+    z-index: -1;
     font-weight: bold;
+}
+body::before { top: 80px; left: 40px; }
+body::after { bottom: 80px; right: 40px; }
+
+
+/* --- 头部区域 --- */
+.header {
     text-align: center;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, rgba(255, 228, 181, 0.8), rgba(255, 99, 71, 0.7));
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 2px solid #d4af37;
 }
 
-/*
- * 主要按钮样式
- * 用途: 定义主要操作按钮的样式，如提交、确认等
- * 背景: 使用金色渐变，体现婚礼的高贵典雅
- * 颜色: 白色文字，确保良好的对比度
- */
-.btn-primary {
-    background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
-    color: white;
+.header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: #8B0000;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
 }
 
-.btn-primary:hover {
-    background: linear-gradient(135deg, #b8860b 0%, #a0522d 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+.couple-names {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 30px 0;
+    flex-wrap: wrap;
 }
 
-/*
- * 次要按钮样式
- * 用途: 定义次要操作按钮的样式，如取消、返回等
- * 背景: 白色，保持简洁
- * 颜色: 深紫色文字，与整体风格一致
- * 边框: 浅灰色边框，提供视觉边界
- */
-.btn-secondary {
+.name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #8B0000;
+    position: relative;
+    padding: 0 20px;
+}
+
+.name::before, .name::after {
+    content: '🏮';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: swing 2s ease-in-out infinite;
+}
+.name::before { left: -10px; }
+.name::after { right: -10px; }
+
+@keyframes swing {
+    0%, 100% { transform: translateY(-50%) rotate(0deg); }
+    50% { transform: translateY(-50%) rotate(10deg); }
+}
+
+.invitation-text {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    color: #666;
+}
+
+/* --- 导航链接 --- */
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.nav-link {
     background: white;
+    padding: 12px 24px;
+    border-radius: 20px;
+    text-decoration: none;
     color: #5a3d5c;
-    border: 2px solid #e1e5e9;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    border: 1px solid transparent;
 }
 
-.btn-secondary:hover {
-    background: #f8f9fa;
-    border-color: #d4af37;
+.nav-link:hover {
+    background: #d4af37;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    border-color: #fff;
 }
 
-/*
- * 卡片样式
- * 用途: 定义内容卡片的样式，用于展示各种信息模块
- * 背景: 白色背景，提供清晰的内容展示区域
- * 圆角: 15px圆角，创建现代感设计
- * 内边距: 30px，提供充足的内容空间
- * 阴影: 轻微阴影，增加层次感
- * 过渡: transform和box-shadow过渡，提供悬停动效
- */
-.card {
-    background: white;
+/* --- 婚礼信息卡片 --- */
+.event-card {
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
     padding: 30px;
     margin: 20px 0;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/*
- * 卡片悬停效果
- * 用途: 当鼠标悬停在卡片上时提供视觉反馈
- * 位移: 向上移动5px，模拟抬起效果
- * 阴影: 增强阴影，突出卡片的立体感
- */
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-/*
- * 标题样式
- * 用途: 统一定义各级标题的颜色和粗细
- * 颜色: 深紫色#5a3d5c，与整体设计风格一致
- * 字重: 700，确保标题的醒目效果
- */
-h1, h2, h3, h4, h5, h6 {
-    color: #5a3d5c;
-    font-weight: 700;
-}
-
-h1 {
-    font-size: 2.5rem;
-}
-
-h2 {
-    font-size: 2rem;
-    color: #d4af37;
-    margin-bottom: 20px;
-}
-
-h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-/*
- * 表单样式
- * 用途: 定义表单元素的样式，包括标签、输入框等
- */
-.form-group {
-    margin-bottom: 20px;
-}
-
-/*
- * 表单标签样式
- * 用途: 定义表单标签的显示方式、间距和颜色
- * 显示: block，确保标签独占一行
- * 字重: bold，突出标签的重要性
- * 颜色: 深紫色，与整体设计风格一致
- */
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #5a3d5c;
-}
-
-/*
- * 表单控件样式
- * 用途: 定义输入框、选择框等表单控件的样式
- * 宽度: 100%，使其充满容器宽度
- * 内边距: 12px 15px，提供舒适的输入空间
- * 边框: 浅灰色边框，提供视觉边界
- * 圆角: 8px，创建圆润外观
- * 过渡: 边框颜色过渡，提供焦点状态反馈
- */
-.form-control {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #e1e5e9;
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: inherit;
-    transition: border-color 0.3s ease;
-}
-
-/*
- * 表单控件焦点状态
- * 用途: 定义表单控件获得焦点时的样式
- * 轮廓: 隐藏默认轮廓
- * 边框颜色: 金色，提供明确的焦点指示
- */
-.form-control:focus {
-    outline: none;
-    border-color: #d4af37;
-}
-
-/*
- * 响应式网格布局
- * 用途: 创建自适应的网格布局，根据屏幕大小自动调整列数
- * 显示: grid，启用CSS Grid布局
- * 列设置: 自动适配，最小宽度300px，最大为1fr（剩余空间）
- * 间距: 25px，提供元素间的合适间隔
- */
-.grid-responsive {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin: 20px 0;
-}
-
-/* 居中布局 */
-.text-center {
     text-align: center;
-}
-
-.text-left {
-    text-align: left;
-}
-
-.text-right {
-    text-align: right;
-}
-
-/*
- * Flex布局样式
- * 用途: 提供常用的Flexbox布局类
- */
-
-/*
- * 居中Flex布局
- * 用途: 在主轴和交叉轴上都居中对齐子元素
- * 应用场景: 模态框、图标居中等
- */
-.flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/*
- * 两端对齐Flex布局
- * 用途: 子元素沿主轴两端对齐，垂直居中
- * 应用场景: 导航栏、表单布局等
- */
-.flex-between {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/*
- * 淡入动画效果
- * 用途: 为元素添加淡入并向上滑动的进入动画
- * 持续时间: 0.6秒
- * 缓动函数: ease-in，开始缓慢加速
- */
-.fade-in {
-    animation: fadeIn 0.6s ease-in;
-}
-
-/*
- * 淡入动画关键帧定义
- * from: 初始状态 - 完全透明，向下偏移20px
- * to: 结束状态 - 完全不透明，回到原始位置
- */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/*
- * 加载动画
- * 用途: 创建一个旋转的加载指示器
- * 显示: inline-block，保持在行内同时可设置宽高
- * 尺寸: 20x20像素，适合嵌入文本中
- * 边框: 半透明白色边框，顶部为纯白色，形成旋转效果
- * 动画: 持续旋转，无限循环
- */
-.loading {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255,255,255,.3);
-    border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 1s ease-in-out infinite;
-}
-
-/*
- * 旋转动画关键帧定义
- * to: 旋转360度，形成完整的旋转循环
- */
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* 通用间距 */
-.mt-1 { margin-top: 0.25rem; }
-.mt-2 { margin-top: 0.5rem; }
-.mt-3 { margin-top: 1rem; }
-.mt-4 { margin-top: 1.5rem; }
-.mt-5 { margin-top: 3rem; }
-
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-3 { margin-bottom: 1rem; }
-.mb-4 { margin-bottom: 1.5rem; }
-.mb-5 { margin-bottom: 3rem; }
-
-/* 背景色 */
-.bg-light {
-    background-color: #f8f9fa;
-}
-
-.bg-gold-gradient {
-    background: linear-gradient(135deg, #fff5f0 0%, #ffeae6 100%);
-}
-
-/* 文本颜色 */
-.text-gold {
-    color: #d4af37;
-}
-
-.text-dark {
-    color: #5a3d5c;
-}
-
-.text-muted {
-    color: #6c757d;
-}
-
-/* 边框 */
-.border-gold {
     border: 1px solid #d4af37;
 }
 
-.rounded {
-    border-radius: 8px;
+.event-card h2 {
+    color: #d4af37;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
 }
 
-.rounded-lg {
+.event-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.detail-item {
+    padding: 15px;
+    background: #fffaf0;
+    border-radius: 10px;
+    border-left: 4px solid #d4af37;
+}
+
+.detail-item h3 {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.detail-item p {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.description-item {
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* --- 倒计时区域 --- */
+.countdown-section {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(255, 99, 71, 0.8), rgba(255, 69, 0, 0.8));
     border-radius: 15px;
+    margin: 40px 0;
+    border: 2px solid #d4af37;
 }
 
-/* 清除浮动 */
-.clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
+.countdown-title {
+    font-size: 1.8rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
 }
 
-/*
- * 媒体查询 - 平板设备
- * 用途: 针对平板设备（最大宽度768px）调整样式
- * 调整内容: 容器内边距、标题字体大小、网格布局、Flex布局方向
- */
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 80px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.countdown-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d4af37;
+    line-height: 1;
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* --- RSVP按钮 --- */
+.rsvp-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.rsvp-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff4500 0%, #dc143c 100%);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+}
+
+.rsvp-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(220, 20, 60, 0.5);
+}
+
+/* --- 访问统计 --- */
+.visit-stats {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #d4af37;
+}
+.visit-stats p {
+    margin: 0;
+    color: #666;
+}
+.visit-count {
+    color: #d4af37;
+    font-weight: bold;
+}
+
+/* --- 相册区域 --- */
+.gallery-section {
+    margin: 40px 0;
+}
+
+.gallery-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #d4af37;
+    margin-bottom: 30px;
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    min-height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #f0f0f0;
+}
+
+.gallery-item-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.gallery-item-title-wrapper h4 {
+    color: #fff;
+    margin: 5px 0;
+}
+
+/* --- 页脚 --- */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background: rgba(255, 228, 181, 0.5);
+    color: #8B0000;
+    border-top: 2px solid #d4af37;
+    border-radius: 20px 20px 0 0;
+}
+
+/* --- 响应式设计 --- */
 @media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
-    
-    h2 {
-        font-size: 1.75rem;
-    }
-    
-    .grid-responsive {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .flex-center,
-    .flex-between {
-        flex-direction: column;
-        gap: 15px;
+    .header h1 { font-size: 2.5rem; }
+    .name { font-size: 2rem; }
+    .couple-names { flex-direction: column; align-items: center; gap: 20px; }
+    .countdown-item { min-width: 70px; padding: 15px 10px; }
+    .countdown-number { font-size: 1.8rem; }
+}
+
+@media (max-width: 480px) {
+    .header h1 { font-size: 2rem; }
+    .name { font-size: 1.8rem; }
+    .rsvp-button, .nav-link { width: 100%; }
+    .nav-links { gap: 10px; }
+}
+
+/* --- 花瓣飘落动画 --- */
+#petal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    top: -20px;
+    font-size: 1.5rem;
+    animation: fall 6s linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
     }
 }
 
-/*
- * 媒体查询 - 手机设备
- * 用途: 针对手机设备（最大宽度480px）调整样式
- * 调整内容: 容器内边距、标题字体大小、卡片内边距、按钮宽度
- */
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
+/* --- 音乐播放器 --- */
+#music-player {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 10000;
+    cursor: pointer;
+}
+
+#music-icon {
+    width: 35px;
+    height: 35px;
+    background: url('/static/images/music_icon.png') no-repeat center center;
+    background-size: contain;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+#music-icon.playing {
+    animation: rotate-music-icon 3s linear infinite;
+}
+
+@keyframes rotate-music-icon {
+    from {
+        transform: rotate(0deg);
     }
-    
-    h1 {
-        font-size: 1.75rem;
+    to {
+        transform: rotate(360deg);
     }
-    
-    .card {
-        padding: 20px;
-        margin: 15px 0;
+}
+
+/* --- 全屏封面 --- */
+.cover-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background: url('/media/wedding_covers/cover_image.jpg') no-repeat center center/cover;
+    position: relative;
+    width: 100%; /* 确保宽度为100% */
+}
+
+.cover-content h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    margin-bottom: 1rem;
+}
+
+.cover-content p {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* 向下滚动箭头 */
+.scroll-down-arrow {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    display: block;
+    z-index: 100;
+}
+
+.scroll-down-arrow span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg);
+    animation: scroll-arrow-animation 2s infinite;
+    opacity: 0;
+    box-sizing: border-box;
+}
+
+.scroll-down-arrow span:nth-of-type(1) {
+    animation-delay: 0s;
+}
+
+@keyframes scroll-arrow-animation {
+    0% {
+        opacity: 0;
+        transform: rotate(-45deg) translate(-20px, -20px);
     }
-    
-    .btn {
-        width: 100%;
-        padding: 15px;
+    50% {
+        opacity: 1;
     }
+    100% {
+        opacity: 0;
+        transform: rotate(-45deg) translate(20px, 20px);
+    }
+}
+
+/* --- 全页滚动 --- */
+body, html {
+    overflow-x: hidden;   /* 只禁止横向滚动 */
+    overflow-y: auto;     /* 允许纵向滚动 */
+    height: auto;         /* 高度自适应内容 */
+}
+
+.fullpage-wrapper {
+    width: 100%;
+    /* 移除高度和transform相关样式 */
+}
+
+.section, .cover-page {
+    width: 100%;
+    /* 移除height: 100vh; 只保留内容自适应高度 */
+    display: block;
+    justify-content: unset;
+    align-items: unset;
+    overflow: unset;
+    padding: 0;
+    margin: 0;
+}
+
+/* 调整部分元素的边距，以适应新布局 */
+.header, .event-card, .countdown-section, .gallery-section {
+    margin-bottom: 0;
+}
+
+#main-content {
+    /* 用于平滑滚动的锚点 */
+}
+.navigate-section {
+    text-align: center;
+    margin: 20px 0;
+}
+#navigate-btn {
+    padding: 12px 32px;
+    font-size: 1.2rem;
+    background: #ff7e5f;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: background 0.2s;
+}
+#navigate-btn:hover {
+    background: #feb47b;
+}
+}
 }

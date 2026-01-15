@@ -130,6 +130,31 @@
             width: 150px !important;
             height: 112px !important;
         }
+
+        .navigate-btn {
+            padding: 12px 25px;
+            background: #28a745; /* A nice green color */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-family: 'Noto Serif SC', serif;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .navigate-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .navigate-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
     </style>
 </head>
 <body>
@@ -181,7 +206,7 @@
                         <p>{{ wedding_event.address }}</p>
                     </div>
                 </div>
-                
+
                 <!-- 检查是否成功获取到地理编码信息 -->
                 {% if map_config.coordinates_found and map_config.geocoding_details %}
                 <!-- 地理编码信息项 -->
@@ -194,7 +219,7 @@
                         <!-- 显示地理编码匹配级别，如果未找到则显示默认值“未知” -->
                         <p>匹配级别: {{ map_config.geocoding_details.level|default:"未知" }}</p>
                         <!-- 显示地理编码匹配置信度 -->
-                        <p>置信度: 
+                        <p>置信度:
                             <!-- 根据置信度数值显示不同的置信度标签 -->
                             {% if map_config.confidence == 5 %}
                                 <!-- 高置信度（5）显示“很高”标签 -->
@@ -243,6 +268,12 @@
                 {% endif %}
             </div>
         </div>
+
+        <!-- 导航按钮 -->
+        <div class="navigate-section" style="text-align: center; margin-bottom: 30px;">
+            <button id="navigate-btn" class="navigate-btn" style="display: none;">导航到婚礼地点</button>
+        </div>
+
         <!-- 如果不存在婚礼事件信息，则显示提示信息 -->
         {% else %}
         <!-- 位置信息卡片 -->
@@ -297,21 +328,21 @@
                         // 使用默认配置初始化地图
                         var defaultConfig = {
                             // 默认中心纬度（北京天安门）
-                            centerLat: 39.9042,
+                            center_lat: 39.9042,
                             // 默认中心经度（北京天安门）
-                            centerLng: 116.4074,
+                            center_lng: 116.4074,
                             // 默认缩放级别
                             zoom: 12,
                             // 标记点标题
-                            markerTitle: '婚礼地点',
+                            marker_title: '婚礼地点',
                             // 标记点内容
-                            markerContent: '地图配置加载失败',
+                            marker_content: '地图配置加载失败',
                             // 坐标是否找到的标志
-                            coordinatesFound: false,
+                            coordinates_found: false,
                             // 匹配置信度
                             confidence: 0,
                             // 地理编码详细信息
-                            geocodingDetails: {}
+                            geocoding_details: {}
                         };
                         // 使用默认配置初始化地图
                         initializeMap(defaultConfig);
@@ -324,27 +355,27 @@
                     // 使用默认配置初始化地图
                     var defaultConfig = {
                         // 默认中心纬度（北京天安门）
-                        centerLat: 39.9042,
+                        center_lat: 39.9042,
                         // 默认中心经度（北京天安门）
-                        centerLng: 116.4074,
+                        center_lng: 116.4074,
                         // 默认缩放级别
                         zoom: 12,
                         // 标记点标题
-                        markerTitle: '婚礼地点',
+                        marker_title: '婚礼地点',
                         // 标记点内容
-                        markerContent: '网络错误，地图配置加载失败',
+                        marker_content: '网络错误，地图配置加载失败',
                         // 坐标是否找到的标志
-                        coordinatesFound: false,
+                        coordinates_found: false,
                         // 匹配置信度
                         confidence: 0,
                         // 地理编码详细信息
-                        geocodingDetails: {}
+                        geocoding_details: {}
                     };
                     // 使用默认配置初始化地图
                     initializeMap(defaultConfig);
                 });
         }
-        
+
         // 初始化地图的具体实现函数
         // 接收地图配置参数并创建高德地图实例
         function initializeMap(mapConfig) {
@@ -356,13 +387,10 @@
 
             // 检查地图容器是否存在
             if (!mapContainer) {
-                // 如果地图容器不存在，在控制台记录错误
                 console.error('地图容器未找到');
-                // 如果加载提示元素存在，更新其内容
                 if (loadingElement) {
                     loadingElement.innerHTML = '<p>地图容器未找到</p>';
                 }
-                // 终止函数执行
                 return;
             }
 
@@ -371,10 +399,10 @@
             let validCenter = [116.4074, 39.9042];
             // 设置默认缩放级别
             let validZoom = 12;
-            
+
             // 检查地图配置中的坐标是否有效
-            if (mapConfig.center_lat && mapConfig.center_lng && 
-                !isNaN(parseFloat(mapConfig.center_lat)) && 
+            if (mapConfig.center_lat && mapConfig.center_lng &&
+                !isNaN(parseFloat(mapConfig.center_lat)) &&
                 !isNaN(parseFloat(mapConfig.center_lng))) {
                 // 如果坐标有效，使用配置中的坐标
                 validCenter = [parseFloat(mapConfig.center_lng), parseFloat(mapConfig.center_lat)];
@@ -384,7 +412,7 @@
                 // 如果坐标无效，在控制台记录警告信息
                 console.warn('使用默认坐标初始化地图');
             }
-            
+
             // 创建高德地图实例
             const map = new AMap.Map('amap-container', {
                 // 设置地图缩放级别
@@ -402,6 +430,22 @@
                 // 允许缩放级别超出默认范围
                 expandZoomRange: true
             });
+
+            // 配置导航按钮
+            const navigateBtn = document.getElementById('navigate-btn');
+            if (mapConfig.coordinates_found && mapConfig.center_lat && mapConfig.center_lng) {
+                navigateBtn.style.display = 'inline-block'; // 显示按钮
+                navigateBtn.onclick = function() {
+                    const lat = mapConfig.center_lat;
+                    const lng = mapConfig.center_lng;
+                    const venue = "{{ wedding_event.venue|escapejs }}"; // 安全地获取地点名称
+                    // 使用高德地图URL Scheme进行导航
+                    const amapUrl = `https://uri.amap.com/navigation?to=${lng},${lat},${venue}&mode=car&policy=1&src=wedding-invitation`;
+                    window.open(amapUrl, '_blank');
+                };
+            } else {
+                navigateBtn.style.display = 'none'; // 如果没有坐标则隐藏
+            }
 
             // 加载并添加地图控件和图层
             // 加载所需的插件并初始化
