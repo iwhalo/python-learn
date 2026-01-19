@@ -164,6 +164,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 日志配置
 # 配置Django的日志系统，包括日志格式、处理器和记录器
+# 日志级别从低到高依次为：
+#    DEBUG: 最详细的信息，通常只在诊断问题时使用
+#    INFO: 确认一切按预期工作
+#    WARNING: 表示发生了意外情况，但程序仍能正常运行
+#    ERROR: 表示某些功能无法正常工作
+#    CRITICAL: 表示程序可能无法继续运行
+#    现在设置为DEBUG级别意味着所有类型的日志信息都会被打印出来。
 LOGGING = {
     'version': 1,  # 日志配置版本号
     'disable_existing_loggers': False,  # 不禁用已存在的日志记录器
@@ -187,7 +194,7 @@ LOGGING = {
     # 日志处理器定义
     'handlers': {
         'console': {  # 控制台输出处理器
-            'level': 'INFO',  # 处理INFO级别及以上日志
+            'level': 'DEBUG',  # 处理DEBUG级别及以上日志（最低级别）
             'class': 'logging.StreamHandler',
             'formatter': 'detailed',  # 使用详细格式
         },
@@ -229,7 +236,7 @@ LOGGING = {
         },
         'invitation': {  # 婚礼邀请函应用日志
             'handlers': ['console', 'file'],
-            'level': 'INFO',
+            'level': 'DEBUG',
             'propagate': False,
         },
         'django.request': {  # Django请求日志
