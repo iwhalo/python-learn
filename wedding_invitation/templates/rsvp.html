@@ -36,10 +36,10 @@
         .header {
             text-align: center; /* 文本居中 */
             padding: 40px 20px; /* 内边距 */
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 245, 240, 0.9) 100%); /* 半透明白色渐变背景 */
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,245,240,0.9) 100%); /* 半透明白色渐变背景 */
             border-radius: 20px; /* 圆角 */
             margin-bottom: 30px; /* 底部外边距 */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* 阴影效果 */
         }
 
         /* 头部标题样式 - 使用金色突出显示主标题 */
@@ -54,7 +54,7 @@
             background: white; /* 白色背景 */
             padding: 40px; /* 内边距 */
             border-radius: 15px; /* 圆角 */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* 阴影效果 */
         }
 
         /* 表单组样式 - 为每个表单字段提供统一的间距 */
@@ -165,11 +165,11 @@
             .container {
                 padding: 10px; /* 减小内边距 */
             }
-
+            
             .form-container {
                 padding: 25px; /* 减小内边距 */
             }
-
+            
             .header h1 {
                 font-size: 2rem; /* 减小字体大小 */
             }
@@ -177,341 +177,301 @@
     </style>
 </head>
 <body>
-<!-- 页面容器 - 整体布局的基础，限制最大宽度并居中 -->
-<div class="container">
-    <!-- 页面头部 - 包含标题和说明文字，视觉引导用户 -->
-    <div class="header">
-        <h1>确认出席 / 发送祝福</h1>
-        <p>请填写以下信息以便我们更好地为您安排座位和餐饮</p>
-    </div>
-
-    <!-- 表单容器 - 包含统计信息、表单和消息提示 -->
-    <div class="form-container">
-        <!-- 统计信息框 - 展示婚礼相关统计数据，增强用户参与感 -->
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 25px; border-left: 4px solid #d4af37;">
-            <h3 style="color: #d4af37; margin-bottom: 10px;">婚礼统计信息</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                <div><strong>已确认出席:</strong> <span id="confirmed-count">加载中...</span> 人</div>
-                <div><strong>总邀请人数:</strong> <span id="total-invited">加载中...</span> 人</div>
-            </div>
+    <!-- 页面容器 - 整体布局的基础，限制最大宽度并居中 -->
+    <div class="container">
+        <!-- 页面头部 - 包含标题和说明文字，视觉引导用户 -->
+        <div class="header">
+            <h1>确认出席 / 发送祝福</h1>
+            <p>请填写以下信息以便我们更好地为您安排座位和餐饮</p>
         </div>
 
-        <!-- 表单元素 - 核心交互区域，使用id="rsvpForm"便于JavaScript操作 -->
-        <form id="rsvpForm">
-            <!-- 姓名输入框 - 必填字段，使用placeholder提示用户输入 -->
-            <div class="form-group">
-                <label for="name">姓名 *</label>
-                <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+        <!-- 表单容器 - 包含统计信息、表单和消息提示 -->
+        <div class="form-container">
+            <!-- 统计信息框 - 展示婚礼相关统计数据，增强用户参与感 -->
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 25px; border-left: 4px solid #d4af37;">
+                <h3 style="color: #d4af37; margin-bottom: 10px;">婚礼统计信息</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div><strong>已确认出席:</strong> <span id="confirmed-count">加载中...</span> 人</div>
+                    <div><strong>总邀请人数:</strong> <span id="total-invited">加载中...</span> 人</div>
+                </div>
             </div>
+            
+            <!-- 表单元素 - 核心交互区域，使用id="rsvpForm"便于JavaScript操作 -->
+            <form id="rsvpForm">
+                <!-- 姓名输入框 - 必填字段，使用placeholder提示用户输入 -->
+                <div class="form-group">
+                    <label for="name">姓名 *</label>
+                    <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+                </div>
 
-            <!-- 联系电话输入框 - 使用tel类型，支持移动端拨号功能 -->
-            <div class="form-group">
-                <label for="phone">联系电话</label>
-                <input type="tel" id="phone" name="phone" placeholder="请输入您的电话号码">
-            </div>
+                <!-- 联系电话输入框 - 使用tel类型，支持移动端拨号功能 -->
+                <div class="form-group">
+                    <label for="phone">联系电话</label>
+                    <input type="tel" id="phone" name="phone" placeholder="请输入您的电话号码">
+                </div>
 
-            <!-- 邮箱地址输入框 - 使用email类型，支持浏览器自动验证 -->
-            <div class="form-group">
-                <label for="email">邮箱地址</label>
-                <input type="email" id="email" name="email" placeholder="请输入您的邮箱地址">
-            </div>
+                <!-- 邮箱地址输入框 - 使用email类型，支持浏览器自动验证 -->
+                <div class="form-group">
+                    <label for="email">邮箱地址</label>
+                    <input type="email" id="email" name="email" placeholder="请输入您的邮箱地址">
+                </div>
 
-            <!-- 邀请码输入框 - 必填字段，用于验证邀请有效性 -->
-            <div class="form-group">
-                <label for="invitation_code">邀请码 *</label>
-                <input type="text" id="invitation_code" name="invitation_code" required placeholder="请输入您的邀请码">
-            </div>
+                <!-- 邀请码输入框 - 必填字段，用于验证邀请有效性 -->
+                <div class="form-group">
+                    <label for="invitation_code">邀请码 *</label>
+                    <input type="text" id="invitation_code" name="invitation_code" required placeholder="请输入您的邀请码">
+                </div>
 
-            <!-- 出席人数选择框 - 下拉选择，限制最大出席人数 -->
-            <div class="form-group">
-                <label for="guest_count">出席人数 *</label>
-                <select id="guest_count" name="guest_count" required>
-                    <option value="1">1人</option>
-                    <option value="2">2人</option>
-                    <option value="3">3人</option>
-                    <option value="4">4人</option>
-                    <option value="5">5人</option>
-                    <option value="6">6人</option>
-                </select>
-            </div>
+                <!-- 出席人数选择框 - 下拉选择，限制最大出席人数 -->
+                <div class="form-group">
+                    <label for="guest_count">出席人数 *</label>
+                    <select id="guest_count" name="guest_count" required>
+                        <option value="1">1人</option>
+                        <option value="2">2人</option>
+                        <option value="3">3人</option>
+                        <option value="4">4人</option>
+                        <option value="5">5人</option>
+                        <option value="6">6人</option>
+                    </select>
+                </div>
 
-            <!-- 确认出席复选框 - 明确用户是否出席 -->
-            <div class="form-group">
-                <label class="checkbox-group">
-                    <input type="checkbox" id="rsvp_status" name="rsvp_status" value="true">
-                    {#                        // 复选框只有在被选中时，其值才会被FormData收集#}
-                    {#                        // 未选中时，FormData中不会包含该字段#}
-                    {#                        // 即使设置了value="true"，实际提交的值也是字符串"true"#}
-                    {#                        // 这是因为HTML表单中的复选框只有在被选中时才会提交其值，否则不会提交任何值#}
-                    {#                        // 所以，即使设置了value="true"，在提交时也不会被收集到FormData中#}
-                    {#                        // 只有当复选框被选中时，其值才会被收集到FormData中#}
-                    {#                        // 所以，在JavaScript中获取该值时，需要使用document.getElementById('rsvp_status').checked来判断复选框是否被选中#}
-                    <span>我确认出席本次婚礼</span>
-                </label>
-            </div>
+                <!-- 确认出席复选框 - 明确用户是否出席 -->
+                <div class="form-group">
+                    <label class="checkbox-group">
+                        <input type="checkbox" id="rsvp_status" name="rsvp_status" value="true">
+                        // 复选框只有在被选中时，其值才会被FormData收集
+                        // 未选中时，FormData中不会包含该字段
+                        // 即使设置了value="true"，实际提交的值也是字符串"true"
+                        // 这是因为HTML表单中的复选框只有在被选中时才会提交其值，否则不会提交任何值
+                        // 所以，即使设置了value="true"，在提交时也不会被收集到FormData中
+                        // 只有当复选框被选中时，其值才会被收集到FormData中
+                        // 所以，在JavaScript中获取该值时，需要使用document.getElementById('rsvp_status').checked来判断复选框是否被选中
+                        <span>我确认出席本次婚礼</span>
+                    </label>
+                </div>
 
-            <!-- 祝福语文本域 - 支持多行输入，允许用户发送个性化祝福 -->
-            <div class="form-group">
-                <label for="message">祝福语</label>
-                <textarea id="message" name="message" rows="4" placeholder="写下您的新人的祝福..."
-                          style="resize: vertical;"></textarea>
-            </div>
+                <!-- 祝福语文本域 - 支持多行输入，允许用户发送个性化祝福 -->
+                <div class="form-group">
+                    <label for="message">祝福语</label>
+                    <textarea id="message" name="message" rows="4" placeholder="写下您的新人的祝福..." style="resize: vertical;"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">备注</label>
+                    <textarea id="message" name="message" rows="4" placeholder="写下您的新人的祝福..." style="resize: vertical;"></textarea>
+                </div>
 
-            <div class="form-group">
-                <label for="message">备注</label>
-                <textarea id="message" name="message" rows="4" placeholder="写下您的新人的祝福..."
-                          style="resize: vertical;"></textarea>
-            </div>
+                <!-- 提交按钮 - 触发表单提交 -->
+                <button type="submit" class="btn-submit">提交回复</button>
+            </form>
 
-            <!-- 提交按钮 - 触发表单提交 -->
-            <button type="submit" class="btn-submit">提交回复</button>
-        </form>
-
-        <!-- 消息提示容器 - 动态显示提交结果或错误信息 -->
-        <div id="messageContainer"></div>
-
-        <!-- 返回首页链接 - 提供导航返回功能 -->
-        <a href="/" class="back-home">← 返回首页</a>
+            <!-- 消息提示容器 - 动态显示提交结果或错误信息 -->
+            <div id="messageContainer"></div>
+            
+            <!-- 返回首页链接 - 提供导航返回功能 -->
+            <a href="/" class="back-home">← 返回首页</a>
+        </div>
     </div>
-</div>
 
-<!-- JavaScript脚本 - 实现表单提交、数据处理和统计信息加载功能 -->
-<script>
+    <!-- JavaScript脚本 - 实现表单提交、数据处理和统计信息加载功能 -->
+    <script>
+        // 为表单添加提交事件监听器 - 异步处理表单提交
 
-    // 通用消息显示函数 - 封装消息显示逻辑
-    function showMessage(message, isSuccess = true) {
-        const messageContainer = document.getElementById('messageContainer');
-        const messageType = isSuccess ? 'success' : 'error';
-
-        // 设置消息内容
-        messageContainer.innerHTML = `<div class="message ${messageType}">${message}</div>`;
-        const messageElement = messageContainer.firstElementChild;
-
-        // 添加淡入效果
-        messageElement.style.opacity = '0';
-        messageElement.style.transition = 'opacity 0.3s ease';
-        setTimeout(() => {
-            messageElement.style.opacity = '1';
-        }, 10);
-
-        // 5秒后自动清除消息
-        setTimeout(() => {
-            messageContainer.innerHTML = '';
-        }, 5000);
-    }
+        // 如果需要  缓存元素引用，可将其移到函数外部缓存(去掉下面的注释)。当前代码在每次提交时都重新获取元素，
+        // const messageContainer = document.getElementById('messageContainer');
+        
+        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // 阻止表单默认提交行为，使用AJAX异步提交
+            
+            // 从表单中获取数据 - 使用FormData API简化数据收集
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            // 1. this 的指向原理：在 JavaScript 中，当使用普通函数（非箭头函数）作为事件监听器时，this 会指向触发事件的 DOM 元素。这里的事件是表单的 submit 事件，所以 this 应该指向表单元素本身，也就是 document.getElementById('rsvpForm') 获取到的表单 DOM 对象。
+            // 当使用 addEventListener 为DOM元素绑定事件时，事件处理函数内部的 this 默认指向触发事件的DOM元素
+            // 这里的事件是表单的 submit 事件，所以 this 指向调用该事件的表单元素（即 document.getElementById('rsvpForm') 获取的元素）
+            // 2. FormData API的作用：
+            // FormData 是浏览器提供的API，用于创建表单数据集合
+            // new FormData(this) 会自动收集表单中所有带有 name 属性的表单控件的值
+            // 这种方式比手动获取每个表单字段的值更简洁、高效
+            // 这段代码使用 this 关键字避免了重复获取表单元素，使代码更简洁。通过 FormData API，可以轻松地将表单数据转换为可用于AJAX请求的格式，然后通过 Object.fromEntries(formData) 转换为普通JavaScript对象进行进一步处理。
 
 
-    // 为表单添加提交事件监听器 - 异步处理表单提交
 
-    // 如果需要  缓存元素引用，可将其移到函数外部缓存(去掉下面的注释)。当前代码在每次提交时都重新获取元素，
-    // const messageContainer = document.getElementById('messageContainer');
+            
+            // 数据类型转换 - 确保数据格式正确
+            data.rsvp_status = document.getElementById('rsvp_status').checked; // 转换为布尔值
+            // HTML复选框特性：<input type="checkbox" id="rsvp_status" name="rsvp_status" value="true">
+                // 复选框只有在被选中时，其值才会被FormData收集
+                // 未选中时，FormData中不会包含该字段
+                // 即使设置了value="true"，实际提交的值也是字符串"true"
+            // 为什么需要这行代码？
+                // 确保无论复选框是否选中，rsvp_status字段始终存在
+                // 将值转换为JavaScript原生布尔类型（true/false），而非字符串
+                // 避免服务器端处理时出现"字段缺失"或"类型错误"问题
+            // 工作原理：
+                // document.getElementById('rsvp_status') 获取复选框元素
+                // .checked 属性直接返回布尔值（选中为true，未选中为false）
+                // 覆盖data对象中可能存在的字符串值或缺失的字段
 
-    document.getElementById('rsvpForm').addEventListener('submit', async function (e) {
-        e.preventDefault(); // 阻止表单默认提交行为，使用AJAX异步提交
+            data.guest_count = parseInt(data.guest_count); // 转换为整数
+            // HTML下拉框特性：<select id="guest_count" name="guest_count">
+                // 所有<option>的value属性值都是字符串类型（即使看起来像数字）
+                // 例如：<option value="1">1人</option> 实际值为字符串"1"
+            // 为什么需要这行代码？
+                // 将字符串形式的数字转换为JavaScript原生number类型
+                // 确保服务器端接收到的是预期的数值类型
+                // 便于后续进行数学运算或比较操作（如统计总人数）
+            // 工作原理：
+                // parseInt() 函数将字符串转换为整数
+                // 处理data.guest_count中来自FormData的字符串值
+                // 例如：将"2"转换为2
+            
+            try {
+                // 发送POST请求到服务器 - 使用fetch API进行异步通信
+                // 发起异步HTTP POST请求到服务器的/submit-rsvp/端点
+                // 该端点用于处理表单提交的数据
+                // 服务器将根据提交的数据执行相应的操作，如保存到数据库或发送通知
+                // 等待服务器响应并将响应结果赋值给response变量
+                // 这里使用了async/await语法，确保异步操作按顺序执行
+                // 异步操作：发送POST请求到服务器，等待服务器响应
+                // 同步操作：等待异步操作完成后，执行后续代码
+                // 异步操作的结果：服务器返回的响应（response）
+                // 同步操作的结果：处理服务器返回的响应数据（result）
+                // 异步操作的错误：网络错误、服务器错误等
+                // 同步操作的错误：代码逻辑错误、数据处理错误等
+                // 异步操作的错误处理：使用try/catch语句捕获错误，进行错误处理
+                // 同步操作的错误处理：使用if/else语句或try/catch语句捕获错误，进行错误处理
+                const response = await fetch('/submit-rsvp/', {
+                    method: 'POST',
+                    // 设置请求头信息，包括数据格式和安全令牌CSRF
+                    // 数据格式：application/json，表示请求体中的数据是JSON格式
+                    // 安全令牌：X-CSRFToken，用于防止跨站请求伪造（CSRF）攻击
+                    // 跨站请求伪造（CSRF）攻击：攻击者利用用户的身份信息，在用户不知情的情况下，向服务器发送恶意请求
+                    // 防止CSRF攻击的方法：使用安全令牌，服务器会验证请求头中的安全令牌是否有效
+                    // 安全令牌的作用：防止攻击者在用户不知情的情况下，向服务器发送恶意请求
+                    // 安全令牌的实现：服务器会在用户登录后，生成一个随机的安全令牌，并将其存储在用户的会话中
+                    // 当用户向服务器发送请求时，服务器会验证请求头中的安全令牌是否有效
+                    // 如果安全令牌无效，服务器会拒绝请求
+                    // 如果安全令牌有效，服务器会处理请求
+                    // 安全令牌的有效期：通常是会话有效期，用户注销后，安全令牌就会失效
+                    // 安全令牌的有效期可以根据实际情况进行调整
+                    // 安全令牌的有效期可以是1小时、1天、1周、1月等
+                    headers: {
+                        'Content-Type': 'application/json', // 设置请求头为JSON格式
+                        'X-CSRFToken': getCookie('csrftoken')  // 获取CSRF token，防止跨站请求伪造
+                        // getCookie(): 自定义辅助函数，从浏览器Cookie中获取Django生成的CSRF令牌
+                        // 对应后端视图的@csrf_exempt装饰器（实际项目中应移除该装饰器，增强安全性）
+                        signal: AbortSignal.timeout(10000) // 10秒超时，防止请求卡住
+                        // AbortSignal.timeout(): 浏览器提供的API，用于设置请求的超时时间
+                        // 当请求超过指定时间（10秒）未响应时，会自动终止请求
+                        // 防止请求长时间阻塞，提高用户体验
+                        // 注意：AbortSignal.timeout()只能在现代浏览器中使用
+                        // 旧版浏览器可能不支持该API
+                        // 可以使用polyfill库来兼容旧版浏览器
+                    },
+                    // 将表单数据转换为JSON格式发送到服务器
+                    // JSON.stringify() 方法将JavaScript对象转换为JSON字符串
+                    // JSON字符串是一种轻量级的数据交换格式，易于阅读和编写
+                    // JSON字符串可以通过HTTP协议传输到服务器
+                    // JSON字符串可以通过JavaScript的JSON.parse()方法转换为JavaScript对象
+                    // JSON字符串的格式：{ "key": "value", "key2": "value2" }
+                    // 服务器端（Django）会根据此头信息正确解析请求数据
+                    // 对应后端视图中的json.loads(request.body)解析
+                    // data: 经过类型转换后的表单数据对象（包含姓名、电话、邀请码、出席状态等）
+                    body: JSON.stringify(data) // 将数据转换为JSON字符串
+                });
+                    // 服务器端对应的Django视图函数submit_rsvp（位于invitation/views.py）执行以下操作：
+                    // 接收POST请求和JSON格式的请求体
+                    // 验证必要字段（姓名、邀请码）
+                    // 检查邀请码是否已被使用
+                    // 创建新的宾客记录到数据库
+                    // 返回JSON格式的响应结果（成功/失败信息）
+                
+                // 解析服务器返回的JSON数据
+                const result = await response.json();
+                // 2. 技术特性
+                    // 异步处理：使用await关键字等待Promise对象response.json()解析完成
+                    // 现代API：采用Fetch API内置的json()方法进行JSON解析
+                    // 简洁高效：一行代码完成从HTTP响应到JavaScript对象的转换
+                // 3. 执行机制
+                    // response对象是Fetch API请求返回的Response实例
+                    // response.json()方法将响应体解析为JSON格式并返回Promise
+                    // await等待Promise解析完成，将结果赋值给result变量
+                    // 解析后result为JavaScript对象，包含服务器返回的所有数据字段
 
-        // 从表单中获取数据 - 使用FormData API简化数据收集
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData);
-        // 1. this 的指向原理：在 JavaScript 中，当使用普通函数（非箭头函数）作为事件监听器时，this 会指向触发事件的 DOM 元素。这里的事件是表单的 submit 事件，所以 this 应该指向表单元素本身，也就是 document.getElementById('rsvpForm') 获取到的表单 DOM 对象。
-        // 当使用 addEventListener 为DOM元素绑定事件时，事件处理函数内部的 this 默认指向触发事件的DOM元素
-        // 这里的事件是表单的 submit 事件，所以 this 指向调用该事件的表单元素（即 document.getElementById('rsvpForm') 获取的元素）
-        // 2. FormData API的作用：
-        // FormData 是浏览器提供的API，用于创建表单数据集合
-        // new FormData(this) 会自动收集表单中所有带有 name 属性的表单控件的值
-        // 这种方式比手动获取每个表单字段的值更简洁、高效
-        // 这段代码使用 this 关键字避免了重复获取表单元素，使代码更简洁。通过 FormData API，可以轻松地将表单数据转换为可用于AJAX请求的格式，然后通过 Object.fromEntries(formData) 转换为普通JavaScript对象进行进一步处理。
 
-
-        // 数据类型转换 - 确保数据格式正确
-        data.rsvp_status = document.getElementById('rsvp_status').checked; // 转换为布尔值
-        // HTML复选框特性：<input type="checkbox" id="rsvp_status" name="rsvp_status" value="true">
-        // 复选框只有在被选中时，其值才会被FormData收集
-        // 未选中时，FormData中不会包含该字段
-        // 即使设置了value="true"，实际提交的值也是字符串"true"
-        // 为什么需要这行代码？
-        // 确保无论复选框是否选中，rsvp_status字段始终存在
-        // 将值转换为JavaScript原生布尔类型（true/false），而非字符串
-        // 避免服务器端处理时出现"字段缺失"或"类型错误"问题
-        // 工作原理：
-        // document.getElementById('rsvp_status') 获取复选框元素
-        // .checked 属性直接返回布尔值（选中为true，未选中为false）
-        // 覆盖data对象中可能存在的字符串值或缺失的字段
-
-        data.guest_count = parseInt(data.guest_count); // 转换为整数
-        // HTML下拉框特性：<select id="guest_count" name="guest_count">
-        // 所有<option>的value属性值都是字符串类型（即使看起来像数字）
-        // 例如：<option value="1">1人</option> 实际值为字符串"1"
-        // 为什么需要这行代码？
-        // 将字符串形式的数字转换为JavaScript原生number类型
-        // 确保服务器端接收到的是预期的数值类型
-        // 便于后续进行数学运算或比较操作（如统计总人数）
-        // 工作原理：
-        // parseInt() 函数将字符串转换为整数
-        // 处理data.guest_count中来自FormData的字符串值
-        // 例如：将"2"转换为2
-
-        try {
-            // 发送POST请求到服务器 - 使用fetch API进行异步通信
-            // 发起异步HTTP POST请求到服务器的/submit-rsvp/端点
-            // 该端点用于处理表单提交的数据
-            // 服务器将根据提交的数据执行相应的操作，如保存到数据库或发送通知
-            // 等待服务器响应并将响应结果赋值给response变量
-            // 这里使用了async/await语法，确保异步操作按顺序执行
-            // 异步操作：发送POST请求到服务器，等待服务器响应
-            // 同步操作：等待异步操作完成后，执行后续代码
-            // 异步操作的结果：服务器返回的响应（response）
-            // 同步操作的结果：处理服务器返回的响应数据（result）
-            // 异步操作的错误：网络错误、服务器错误等
-            // 同步操作的错误：代码逻辑错误、数据处理错误等
-            // 异步操作的错误处理：使用try/catch语句捕获错误，进行错误处理
-            // 同步操作的错误处理：使用if/else语句或try/catch语句捕获错误，进行错误处理
-            const response = await fetch('/submit-rsvp/', {
-                method: 'POST',
-                // 设置请求头信息，包括数据格式和安全令牌CSRF
-                // 数据格式：application/json，表示请求体中的数据是JSON格式
-                // 安全令牌：X-CSRFToken，用于防止跨站请求伪造（CSRF）攻击
-                // 跨站请求伪造（CSRF）攻击：攻击者利用用户的身份信息，在用户不知情的情况下，向服务器发送恶意请求
-                // 防止CSRF攻击的方法：使用安全令牌，服务器会验证请求头中的安全令牌是否有效
-                // 安全令牌的作用：防止攻击者在用户不知情的情况下，向服务器发送恶意请求
-                // 安全令牌的实现：服务器会在用户登录后，生成一个随机的安全令牌，并将其存储在用户的会话中
-                // 当用户向服务器发送请求时，服务器会验证请求头中的安全令牌是否有效
-                // 如果安全令牌无效，服务器会拒绝请求
-                // 如果安全令牌有效，服务器会处理请求
-                // 安全令牌的有效期：通常是会话有效期，用户注销后，安全令牌就会失效
-                // 安全令牌的有效期可以根据实际情况进行调整
-                // 安全令牌的有效期可以是1小时、1天、1周、1月等
-                headers: {
-                    'Content-Type': 'application/json', // 设置请求头为JSON格式
-                    'X-CSRFToken': getCookie('csrftoken'),  // 获取CSRF token，防止跨站请求伪造
-                    // getCookie(): 自定义辅助函数，从浏览器Cookie中获取Django生成的CSRF令牌
-                    // 对应后端视图的@csrf_exempt装饰器（实际项目中应移除该装饰器，增强安全性）
-                    signal: AbortSignal.timeout(10000) // 10秒超时，防止请求卡住
-                    // AbortSignal.timeout(): 浏览器提供的API，用于设置请求的超时时间
-                    // 当请求超过指定时间（10秒）未响应时，会自动终止请求
-                    // 防止请求长时间阻塞，提高用户体验
-                    // 注意：AbortSignal.timeout()只能在现代浏览器中使用
-                    // 旧版浏览器可能不支持该API
-                    // 可以使用polyfill库来兼容旧版浏览器
-                },
-                // 将表单数据转换为JSON格式发送到服务器
-                // JSON.stringify() 方法将JavaScript对象转换为JSON字符串
-                // JSON字符串是一种轻量级的数据交换格式，易于阅读和编写
-                // JSON字符串可以通过HTTP协议传输到服务器
-                // JSON字符串可以通过JavaScript的JSON.parse()方法转换为JavaScript对象
-                // JSON字符串的格式：{ "key": "value", "key2": "value2" }
-                // 服务器端（Django）会根据此头信息正确解析请求数据
-                // 对应后端视图中的json.loads(request.body)解析
-                // data: 经过类型转换后的表单数据对象（包含姓名、电话、邀请码、出席状态等）
-                body: JSON.stringify(data) // 将数据转换为JSON字符串
-            });
-            // 服务器端对应的Django视图函数submit_rsvp（位于invitation/views.py）执行以下操作：
-            // 接收POST请求和JSON格式的请求体
-            // 验证必要字段（姓名、邀请码）
-            // 检查邀请码是否已被使用
-            // 创建新的宾客记录到数据库
-            // 返回JSON格式的响应结果（成功/失败信息）
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                // 获取消息提示容器
+                const messageContainer = document.getElementById('messageContainer');
+                // 1. DOM操作
+                    // 使用 document.getElementById() 方法根据元素ID获取DOM对象
+                    // ID选择器是获取特定元素最高效的方式之一
+                    // 获取的 messageContainer 是一个HTMLDivElement对象
+                // 2. 代码上下文
+                    // 该代码位于表单提交事件处理函数的 try 块内，在服务器响应解析完成后执行：
+                    // 在HTML中，messageContainer 是一个预定义的空div容器
+                
+                // 根据服务器返回的结果显示不同的消息
+                if (result.success) {
+                    messageContainer.innerHTML = `<div class="message success">${result.message}</div>`;
+                    // 显示绿色成功消息框
+                    // 内容为服务器返回的成功信息
+                    this.reset(); // 重置表单
+                    loadStats(); // 更新统计信息
+                } else {
+                    messageContainer.innerHTML = `<div class="message error">${result.message}</div>`;
+                    // 显示红色错误消息框
+                    // 内容为服务器返回的错误信息
+                }
+            } catch (error) {
+                // 捕获错误并显示 - 提供友好的错误提示
+                console.error('Error:', error);
+                document.getElementById('messageContainer').innerHTML = '<div class="message error">提交失败，请稍后重试</div>';
+                // 显示红色错误消息框
+                // 内容为通用网络错误提示"提交失败，请稍后重试"
             }
-
-
-            // 解析服务器返回的JSON数据
-            // 解析JSON响应 - 使用await处理Promise对象
-            const result = await response.json();
-            // 2. 技术特性
-            // 异步处理：使用await关键字等待Promise对象response.json()解析完成
-            // 现代API：采用Fetch API内置的json()方法进行JSON解析
-            // 简洁高效：一行代码完成从HTTP响应到JavaScript对象的转换
-            // 3. 执行机制
-            // response对象是Fetch API请求返回的Response实例
-            // response.json()方法将响应体解析为JSON格式并返回Promise
-            // await等待Promise解析完成，将结果赋值给result变量
-            // 解析后result为JavaScript对象，包含服务器返回的所有数据字段
-
-            // 获取消息提示容器
-            //const messageContainer = document.getElementById('messageContainer');
-            // 1. DOM操作
-            // 使用 document.getElementById() 方法根据元素ID获取DOM对象
-            // ID选择器是获取特定元素最高效的方式之一
-            // 获取的 messageContainer 是一个HTMLDivElement对象
-            // 2. 代码上下文
-            // 该代码位于表单提交事件处理函数的 try 块内，在服务器响应解析完成后执行：
-            // 在HTML中，messageContainer 是一个预定义的空div容器
-
-
-            // 根据服务器返回的结果显示不同的消息
-            //if (result.success) {
-            //messageContainer.innerHTML = `<div class="message success">${result.message}</div>`;
-            // 显示绿色成功消息框
-            // 内容为服务器返回的成功信息
-            //this.reset(); // 重置表单
-            //loadStats(); // 更新统计信息
-            //} else {
-            //messageContainer.innerHTML = `<div class="message error">${result.message}</div>`;
-            // 显示红色错误消息框
-            // 内容为服务器返回的错误信息
-            //}
-
-            if (result.success) {
-                showMessage(result.message, true);
-                this.reset(); // 重置表单
-                loadStats();  // 更新统计信息
-            } else {
-                showMessage(result.message, false);
-            }
-
-        } catch (error) {
-            // 捕获错误并显示 - 提供友好的错误提示
-            console.error('Error:', error);
-            //document.getElementById('messageContainer').innerHTML = '<div class="message error">提交失败，请稍后重试</div>';
-            // 显示红色错误消息框
-            // 内容为通用网络错误提示"提交失败，请稍后重试"
-            showMessage(result.message, false);
-        }
-    });
-
-    // 获取CSRF token的辅助函数 - 确保表单提交安全
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';'); // 分割所有cookie
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim(); // 去除空格
-                // 查找指定名称的cookie
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1)); // 解码并返回
-                    break;
+        });
+        
+        // 获取CSRF token的辅助函数 - 确保表单提交安全
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';'); // 分割所有cookie
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim(); // 去除空格
+                    // 查找指定名称的cookie
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1)); // 解码并返回
+                        break;
+                    }
                 }
             }
+            return cookieValue;
         }
-        return cookieValue;
-    }
-
-    // 加载统计信息的函数 - 异步获取并更新页面统计数据
-    async function loadStats() {
-        try {
-            // 发送GET请求获取统计信息
-            const response = await fetch('/api/guest-stats/');
-            if (response.ok) {
-                const data = await response.json();
-                // 更新统计信息显示
-                document.getElementById('confirmed-count').textContent = data.total_confirmed_count;
-                document.getElementById('total-invited').textContent = data.total_invited;
-            } else {
-                console.error('获取统计信息失败:', response.status);
-                document.getElementById('confirmed-count').textContent = '获取失败';
-                document.getElementById('total-invited').textContent = '获取失败';
+        
+        // 加载统计信息的函数 - 异步获取并更新页面统计数据
+        async function loadStats() {
+            try {
+                // 发送GET请求获取统计信息
+                const response = await fetch('/api/guest-stats/');
+                if(response.ok) {
+                    const data = await response.json();
+                    // 更新统计信息显示
+                    document.getElementById('confirmed-count').textContent = data.total_confirmed_count;
+                    document.getElementById('total-invited').textContent = data.total_invited;
+                } else {
+                    console.error('获取统计信息失败:', response.status);
+                    document.getElementById('confirmed-count').textContent = '获取失败';
+                    document.getElementById('total-invited').textContent = '获取失败';
+                }
+            } catch (error) {
+                console.error('加载统计信息失败:', error);
+                document.getElementById('confirmed-count').textContent = '加载失败';
+                document.getElementById('total-invited').textContent = '加载失败';
             }
-        } catch (error) {
-            console.error('加载统计信息失败:', error);
-            document.getElementById('confirmed-count').textContent = '加载失败';
-            document.getElementById('total-invited').textContent = '加载失败';
         }
-    }
-
-    // 页面加载完成后获取统计信息 - 确保页面内容完整
-    document.addEventListener('DOMContentLoaded', loadStats);
-</script>
+        
+        // 页面加载完成后获取统计信息 - 确保页面内容完整
+        document.addEventListener('DOMContentLoaded', loadStats);
+    </script>
 </body>
 </html>
